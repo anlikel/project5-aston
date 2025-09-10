@@ -19,14 +19,14 @@ public final class FileObjectLoader {
 
     public static List<String>getProductList() throws ReadWriteException {
         if(productList==null){
-            productList=loadListFromFile("/home/tilium/Desktop/aston/project5-group/src/main/java/org/example/properties/product.txt");
+            productList=loadListFromFile("src/properties/product.txt");
         }
         return productList;
     }
 
     public static List<String>getUserList() throws ReadWriteException {
         if(userList==null){
-            userList=loadListFromFile("/home/tilium/Desktop/aston/project5-group/src/main/java/org/example/properties/user.txt");
+            userList=loadListFromFile("src/properties/user.txt");
         }
         return userList;
     }

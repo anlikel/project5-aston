@@ -1,6 +1,7 @@
 package commands;
 
 
+import controller.Controller;
 
 public class CommandFactory {
     private static Controller controller;
@@ -8,9 +9,6 @@ public class CommandFactory {
     public static Command getCommand(Action action) {
         Command command = null;
         switch (action) {
-            case SetModel:
-                command = new SetModelCommand(controller);
-                break;
             case Exit:
                 command = new ExitCommand();
                 break;
