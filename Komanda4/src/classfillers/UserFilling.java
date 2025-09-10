@@ -1,7 +1,5 @@
 package classfillers;
 
-
-
 import classes.User;
 import exceptions.ReadWriteException;
 import utils.FileObjectLoader;

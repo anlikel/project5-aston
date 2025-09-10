@@ -1,7 +1,7 @@
 package classfillers;
 
 
-
+import classes.Product;
 import exceptions.ReadWriteException;
 import utils.FileObjectLoader;
 import utils.Util;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ProductFilling<Product> implements Filling<Product> {
+public class ProductFilling implements Filling<Product> {
     private String title;
     private double price;
     private int quantity;

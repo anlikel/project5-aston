@@ -4,6 +4,7 @@ package utils;
 
 import classfillers.Filling;
 import classfillers.ProductFilling;
+import classfillers.UserFilling;
 import commands.Action;
 import commands.CommandFactory;
 import exceptions.ReadWriteException;
