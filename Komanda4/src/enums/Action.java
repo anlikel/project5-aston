@@ -1,4 +1,4 @@
-package commands;
+package enums;
 
 public enum Action {
     Exit,

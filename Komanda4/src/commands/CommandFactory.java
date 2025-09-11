@@ -2,6 +2,7 @@ package commands;
 
 
 import controller.Controller;
+import enums.Action;
 
 public class CommandFactory {
     private static Controller controller;

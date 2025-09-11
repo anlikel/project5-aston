@@ -7,14 +7,11 @@ import classes.User;
 import classfillers.Filling;
 import classfillers.ProductFilling;
 import classfillers.UserFilling;
-import commands.Action;
+import enums.Action;
 import commands.CommandFactory;
 import controller.Controller;
 import exceptions.ReadWriteException;
 import model.Model;
-
-
-import java.util.List;
 
 public class MenuHandler {
     public static void mainMenuHandler(String choose) throws ReadWriteException {
