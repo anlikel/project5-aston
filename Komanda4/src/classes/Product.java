@@ -2,7 +2,7 @@ package classes;
 
 import java.util.Objects;
 
-public class Product {
+public class Product implements Comparable<Product>{
     private final String title;
     private final double price;
     private final int quantity;
@@ -62,4 +62,18 @@ public class Product {
     public int hashCode() {
         return Objects.hash(title, price, quantity);
     }
+
+    @Override
+    public int compareTo(Product other) {
+        int titleCompare = this.title.compareTo(other.title);
+        if (titleCompare != 0) {
+            return titleCompare;
+        }
+        int priceCompare = Double.compare(this.price, other.price);
+        if (priceCompare != 0) {
+            return priceCompare;
+        }
+        return Integer.compare(this.quantity, other.quantity);
+    }
+
 }

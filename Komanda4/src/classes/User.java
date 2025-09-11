@@ -2,7 +2,7 @@ package classes;
 
 import java.util.Objects;
 
-public class User {
+public class User implements Comparable<User>{
     private final String name;
     private final int age;
     private final String email;
@@ -61,5 +61,20 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(name, age, email);
+    }
+    @Override
+    public int compareTo(User other) {
+        // Natural order: сначала по name, затем по age, затем по email
+        int nameCompare = this.name.compareTo(other.name);
+        if (nameCompare != 0) {
+            return nameCompare;
+        }
+
+        int ageCompare = Integer.compare(this.age, other.age);
+        if (ageCompare != 0) {
+            return ageCompare;
+        }
+
+        return this.email.compareTo(other.email);
     }
 }
