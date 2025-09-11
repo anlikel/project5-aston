@@ -12,29 +12,34 @@ import java.util.List;
 
 public class TestCollections {
     public static void main(String[] args) {
-        List<Product> products=new MyArrayListImpl<>();
-        products.add(new Product.ProductBuilder()
+        MyArrayListImpl<Product> products=new MyArrayListImpl<>();
+        Product pr1=new Product.ProductBuilder()
                 .setTitle("Laptop")
                 .setPrice(999.99)
                 .setQuantity(5)
-                .build());
+                .build();
 
-        products.add(new Product.ProductBuilder()
+        Product pr2=new Product.ProductBuilder()
                 .setTitle("Mouse")
                 .setPrice(25.50)
                 .setQuantity(20)
-                .build());
+                .build();
 
-        products.add(new Product.ProductBuilder()
+        Product pr3=new Product.ProductBuilder()
                 .setTitle("Laptop") // Такое же название как у первого
                 .setPrice(899.99)   // Но другая цена
                 .setQuantity(3)
-                .build());
+                .build();
+        products.add(pr1);
+        products.add(pr2);
+        products.add(pr3);
         Comparator comp=ComparatorFabric.getComparator(ClassTags.Product);
         ProductComparator productComparator=(ProductComparator)comp;
         productComparator.setSortField("price");
         comp=productComparator;
-        products.sort(comp);
+        products.sort(null);
         products.forEach(System.out::println);
+        int index=products.binarySearch(pr2,null);
+        System.out.println(index);
     }
 }
