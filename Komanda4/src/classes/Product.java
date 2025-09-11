@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.Objects;
+
 public class Product {
     private final String title;
     private final double price;
@@ -43,5 +45,21 @@ public class Product {
     @Override
     public String toString() {
         return String.format("Product{title='%s', price=%.2f, quantity=%d}", title, price, quantity);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+        return Double.compare(product.price, price) == 0 &&
+                quantity == product.quantity &&
+                Objects.equals(title, product.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, price, quantity);
     }
 }
