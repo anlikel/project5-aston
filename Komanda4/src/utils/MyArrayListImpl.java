@@ -402,4 +402,31 @@ public class MyArrayListImpl<E> implements List<E> {
         sb.append(']');
         return sb.toString();
     }
+
+    public int binarySearch(E key, Comparator<? super E> comparator) {
+        int low = 0;
+        int high = size - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            E midElement = (E) elements[mid];
+
+            int comparison;
+            if (comparator != null) {
+                comparison = comparator.compare(key, midElement);
+            } else {
+                Comparable<? super E> comparableKey = (Comparable<? super E>) key;
+                comparison = comparableKey.compareTo(midElement);
+            }
+
+            if (comparison == 0) {
+                return mid;
+            } else if (comparison < 0) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return -1;
+    }
 }
