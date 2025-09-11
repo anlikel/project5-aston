@@ -11,6 +11,7 @@ public class CommandFactory {
         switch (action) {
             case Exit:
                 command = new ExitCommand();
+                command.execute();
                 break;
         }
         return command;

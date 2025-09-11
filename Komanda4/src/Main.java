@@ -19,7 +19,12 @@ public class Main
         View view=new View(controller);
         Main main=new Main(controller,view);
         Holder.setController(controller);
-        main.start();
+        try {
+            main.start();
+        }catch (NullPointerException e){
+            // new ReadWriteException("");
+            e.printStackTrace();
+        }
 
 
     }
