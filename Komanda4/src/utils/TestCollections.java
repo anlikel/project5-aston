@@ -2,8 +2,12 @@ package utils;
 
 import classes.Product;
 import classes.User;
+import comparators.ComparatorFabric;
+import comparators.ProductComparator;
+import enums.ClassTags;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class TestCollections {
@@ -26,7 +30,11 @@ public class TestCollections {
                 .setPrice(899.99)   // Но другая цена
                 .setQuantity(3)
                 .build());
-        products.sort(null);
+        Comparator comp=ComparatorFabric.getComparator(ClassTags.Product);
+        ProductComparator productComparator=(ProductComparator)comp;
+        productComparator.setSortField("price");
+        comp=productComparator;
+        products.sort(comp);
         products.forEach(System.out::println);
     }
 }
