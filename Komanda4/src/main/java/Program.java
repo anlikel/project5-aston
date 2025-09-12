@@ -1,5 +1,3 @@
-package main.java;
-
 import controller.Controller;
 import exceptions.ReadWriteException;
 import menu.MenuPrinter;

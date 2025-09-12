@@ -1,5 +1,3 @@
-package main.java;
-
 import exceptions.ReadWriteException;
 import utils.Util;
 
