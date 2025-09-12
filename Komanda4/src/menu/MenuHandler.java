@@ -30,7 +30,7 @@ public class MenuHandler {
                 CommandFactory.getCommand(Action.SORT).execute();
                 break;
             case "3":
-                CommandFactory.getCommand(Action.BINARY_SORT).execute();
+                CommandFactory.getCommand(Action.BINARY_SEARCH).execute();
                 break;
             case "4":
                 CommandFactory.getCommand(Action.WRITE).execute();

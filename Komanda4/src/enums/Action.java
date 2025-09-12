@@ -4,7 +4,7 @@ public enum Action {
     EXIT,
     CREATE,
     SORT,
-    BINARY_SORT,
+    BINARY_SEARCH,
     WRITE,
     DISPLAY
 }
