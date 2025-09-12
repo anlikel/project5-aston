@@ -14,6 +14,7 @@ import java.util.List;
 public final class FileObjectLoader {
     private static List<String> productList=null;
     private static List<String> userList=null;
+    private static List<String> flightList=null;
 
     private FileObjectLoader(){}
 
@@ -29,6 +30,13 @@ public final class FileObjectLoader {
             userList=loadListFromFile("src/properties/user.txt");
         }
         return userList;
+    }
+
+    public static List<String>getFlightList() throws ReadWriteException {
+        if(flightList==null){
+            flightList = loadListFromFile("src/properties/flight.txt");
+        }
+        return flightList;
     }
 
     private static List<String>loadListFromFile(String filename) throws ReadWriteException {

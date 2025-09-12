@@ -57,7 +57,7 @@ public class UserFilling implements Filling<User> {
         List<String> list= FileObjectLoader.getUserList();
         List<User>users=new ArrayList<>();
         if (list.size() < 3) {
-            throw new ReadWriteException("исключяение: слишком аленький список данных для заполнения");
+            throw new ReadWriteException("исключяение: слишком маленький список данных для заполнения");
         }
         for(int i=0;i<list.size()/fieldCount;i++) {
             User user=new User.UserBuilder()
