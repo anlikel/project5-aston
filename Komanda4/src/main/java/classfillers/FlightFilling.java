@@ -2,7 +2,7 @@ package classfillers;
 
 import classes.Flight;
 import exceptions.ReadWriteException;
-//import utils.FileObjectLoader;
+import utils.FileObjectLoad;
 import utils.Util;
 
 import java.text.DateFormat;
@@ -68,8 +68,7 @@ public class FlightFilling implements Filling<Flight>{
 
     @Override
     public List<Flight> autoFill() throws ReadWriteException {
-        List<String> list= null;
-//                FileObjectLoader.getFlightList();
+        List<String> list= FileObjectLoad.getFlightList();
 
         List<Flight> temp =new ArrayList<>();
         DateFormat fmt = new SimpleDateFormat("dd.MM.yyyy HH:mm");

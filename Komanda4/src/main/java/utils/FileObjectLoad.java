@@ -16,6 +16,7 @@ import java.util.List;
 public final class FileObjectLoad {
     private static List<String> productList=null;
     private static List<String> userList=null;
+    private static List<String> flightList=null;
     static String productsFile="src/main/resources/product.txt";
     static String usersFile="src/main/resources/user.txt";
     static String productsFile2="src/main/resources/product2.txt";
@@ -93,4 +94,13 @@ public final class FileObjectLoad {
             throw new ReadWriteException("Исключение: ошибка чтения JSON файла " + productsFile2 + ": " + e.getMessage());
         }
     }
+    /// //////////////////////////////////////////////////////////////
+    public static List<String>getFlightList() throws ReadWriteException {
+        if(flightList==null){
+            flightList = loadListFromFile("src/properties/flight.txt");
+        }
+        return flightList;
+    }
+
+
 }
