@@ -2,6 +2,9 @@ package enums;
 
 public enum Action {
     Exit,
-    SetModel
-
+    Create,
+    Sort,
+    BinarySort,
+    Write,
+    Display
 }
