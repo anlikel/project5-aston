@@ -17,7 +17,7 @@ public class ComparatorFabric {
 
     private static void initMap(){
         map=new HashMap<>();
-        map.put(ClassTags.Product,new ProductComparator());
-        map.put(ClassTags.User,new UserComparator());
+        map.put(ClassTags.PRODUCT,new ProductComparator());
+        map.put(ClassTags.USER,new UserComparator());
     }
 }

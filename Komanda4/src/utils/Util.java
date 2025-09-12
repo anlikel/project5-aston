@@ -26,36 +26,4 @@ public class Util {
         }
         return str;
     }
-
-    public static void mainMenu() throws ReadWriteException {
-        writeMessage("1-Выберите класс");
-        writeMessage("2-Выход");
-        String choose=Util.readMessage();
-        MenuHandler.mainMenuHandler(choose);
-    }
-
-    public static void classMenu() throws ReadWriteException {
-        writeMessage("1-User");
-        writeMessage("2-Product");
-        writeMessage("2-Выход");
-        String choose=Util.readMessage();
-        MenuHandler.classMenuHandler(choose);
-    }
-
-    public static int amountMenu() throws ReadWriteException {
-        writeMessage("1-продолжить");
-        writeMessage("2-Выход");
-        String choose=Util.readMessage();
-        return MenuHandler.amountMenuHandler(choose);
-    }
-
-    public static void fillMenu(Filling filler) throws ReadWriteException {
-        writeMessage("1-заполняем из консоли");
-        writeMessage("2-рандомное заполнение");
-        writeMessage("3-читаем из файла");
-        writeMessage("4-Выход");
-        String choose=Util.readMessage();
-        MenuHandler.fillMenuHandler(choose,filler);
-    }
-
 }

@@ -1,10 +1,10 @@
 package enums;
 
 public enum Action {
-    Exit,
-    Create,
-    Sort,
-    BinarySort,
-    Write,
-    Display
+    EXIT,
+    CREATE,
+    SORT,
+    BINARY_SORT,
+    WRITE,
+    DISPLAY
 }

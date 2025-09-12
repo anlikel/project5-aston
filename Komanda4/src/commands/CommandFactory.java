@@ -1,23 +1,28 @@
 package commands;
 
-
-import controller.Controller;
 import enums.Action;
 
+import java.util.HashMap;
+
 public class CommandFactory {
-    private static Controller controller;
+    private static HashMap<Action,Command>map;
 
     public static Command getCommand(Action action) {
-        Command command = null;
-        switch (action) {
-            case Exit:
-                command = new ExitCommand();
-                break;
+        if(map==null)
+        {
+            initActionMap();
         }
-        return command;
+        return map.get(action);
+    }
+    private static void initActionMap(){
+        map=new HashMap<>();
+        map.put(Action.EXIT,new ExitCommand());
+        map.put(Action.CREATE,new CreateCommand());
+        map.put(Action.SORT,new SortCommand());
+        map.put(Action.BINARY_SORT,new BinarySortCommand());
+        map.put(Action.WRITE,new WriteCommand());
+        map.put(Action.DISPLAY,new DisplayCommand());
     }
 
-    public static void setController(Controller controller) {
-        CommandFactory.controller = controller;
-    }
+
 }
