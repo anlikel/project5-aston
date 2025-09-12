@@ -1,20 +1,14 @@
 package comparators;
 
 import classes.Product;
+import exceptions.ReadWriteException;
+import utils.Util;
 
 import java.util.Comparator;
 
-public class ProductComparator implements Comparator<Product> {
+public class ProductComparator implements Comparator<Product>,Filter {
 
     private String sortField;
-
-    public void setSortField(String sortField) {
-        this.sortField = sortField;
-    }
-
-    public String getSortField() {
-        return sortField;
-    }
 
     @Override
     public int compare(Product p1, Product p2) {
@@ -27,6 +21,18 @@ public class ProductComparator implements Comparator<Product> {
                 return Integer.compare(p1.getQuantity(), p2.getQuantity());
             default:
                 return p1.compareTo(p2);
+        }
+    }
+
+    @Override
+    public void setFilter() throws ReadWriteException {
+        try{
+            Util.writeMessage("введите поле для сортировки");
+            Util.writeMessage("title price quantity");
+            sortField=Util.readMessage();
+        }
+        catch (ReadWriteException e){
+            throw new ReadWriteException("некорректный ввод");
         }
     }
 }

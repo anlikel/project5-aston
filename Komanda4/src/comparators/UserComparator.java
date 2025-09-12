@@ -1,21 +1,14 @@
 package comparators;
 
 import classes.User;
+import exceptions.ReadWriteException;
+import utils.Util;
 
 import java.util.Comparator;
 
-public class UserComparator implements Comparator<User> {
+public class UserComparator implements Comparator<User>,Filter {
 
     private String sortField;
-
-    public void setSortField(String sortField) {
-        this.sortField = sortField;
-    }
-
-    public String getSortField() {
-        return sortField;
-
-    }
 
     @Override
     public int compare(User u1, User u2) {
@@ -28,6 +21,18 @@ public class UserComparator implements Comparator<User> {
                 return u1.getEmail().compareTo(u2.getEmail());
             default:
                 return u1.compareTo(u2);
+        }
+    }
+
+    @Override
+    public void setFilter() throws ReadWriteException {
+        try{
+            Util.writeMessage("введите поле для сортировки");
+            Util.writeMessage("name age email");
+            sortField=Util.readMessage();
+        }
+        catch (ReadWriteException e){
+            throw new ReadWriteException("некорректный ввод");
         }
     }
 }
