@@ -1,6 +1,6 @@
 package commands;
 
-public class BinarySortCommand implements Command{
+public class BinarySearchCommand implements Command{
     @Override
     public void execute() {
 

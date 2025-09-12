@@ -3,6 +3,7 @@ package classfillers;
 import classes.User;
 import exceptions.ReadWriteException;
 import utils.FileObjectLoader;
+import utils.MyArrayListImpl;
 import utils.Util;
 
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class UserFilling implements Filling<User> {
 
     @Override
     public List<User> manualFill(int size) throws ReadWriteException {
-        List<User>users=new ArrayList<>();
+        List<User>users=new MyArrayListImpl<>();
         for (int i=0;i<size;i++) {
             Util.writeMessage("input user name");
             name = Util.readMessage();
@@ -38,7 +39,7 @@ public class UserFilling implements Filling<User> {
 
     @Override
     public List<User> randomFill(int size) {
-        List<User>users=new ArrayList<>();
+        List<User>users=new MyArrayListImpl<>();
         Random random = new Random();
         for (int i=0;i<size;i++) {
             User user = new User.UserBuilder()
@@ -55,7 +56,7 @@ public class UserFilling implements Filling<User> {
     @Override
     public List<User> autoFill() throws ReadWriteException {
         List<String> list= FileObjectLoader.getUserList();
-        List<User>users=new ArrayList<>();
+        List<User>users=new MyArrayListImpl<>();
         if (list.size() < 3) {
             throw new ReadWriteException("исключяение: слишком аленький список данных для заполнения");
         }

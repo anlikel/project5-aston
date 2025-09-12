@@ -19,7 +19,7 @@ public class CommandFactory {
         map.put(Action.EXIT,new ExitCommand());
         map.put(Action.CREATE,new CreateCommand());
         map.put(Action.SORT,new SortCommand());
-        map.put(Action.BINARY_SORT,new BinarySortCommand());
+        map.put(Action.BINARY_SEARCH,new BinarySearchCommand());
         map.put(Action.WRITE,new WriteCommand());
         map.put(Action.DISPLAY,new DisplayCommand());
     }
