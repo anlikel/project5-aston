@@ -5,7 +5,6 @@ import exceptions.ReadWriteException;
 import utils.FileObjectLoad;
 import utils.MyArrayListImpl;
 import utils.Util;
-
 import java.util.List;
 import java.util.Random;
 
@@ -32,7 +31,6 @@ public class UserFilling implements Filling<User> {
                     .build();
             users.add(user);
         }
-//        users.forEach(System.out::println);
         return users;
     }
 
@@ -48,27 +46,25 @@ public class UserFilling implements Filling<User> {
                     .build();
             users.add(user);
         }
-//        users.forEach(System.out::println);
         return users;
     }
 
     @Override
     public List<User> autoFill() throws ReadWriteException {
-        List<String> list= FileObjectLoad.getUserList();
-        List<User>users=new MyArrayListImpl<>();
-        if (list.size() < 3) {
-            throw new ReadWriteException("исключяение: слишком аленький список данных для заполнения");
-        }
-        for(int i=0;i<list.size()/fieldCount;i++) {
-            User user=new User.UserBuilder()
-                    .setName(list.get(i*3))
-                    .setAge(Integer.parseInt(list.get(i*3+1)))
-                    .setEmail(list.get(i*3+2))
-                    .build();
-            users.add(user);
-        }
-//        users.forEach(System.out::println);
-        return users;
+//        List<String> list= FileObjectLoad.getUserList();
+//        List<User>users=new MyArrayListImpl<>();
+//        if (list.size() < 3) {
+//            throw new ReadWriteException("исключение: слишком аленький список данных для заполнения");
+//        }
+//        for(int i=0;i<list.size()/fieldCount;i++) {
+//            User user=new User.UserBuilder()
+//                    .setName(list.get(i*3))
+//                    .setAge(Integer.parseInt(list.get(i*3+1)))
+//                    .setEmail(list.get(i*3+2))
+//                    .build();
+//            users.add(user);
+//        }
+//        return users;
+        return FileObjectLoad.loadUsersFromJsonFile();
     }
-
 }

@@ -1,7 +1,7 @@
 package main.java;
 
-import main.java.exceptions.ReadWriteException;
-import main.java.utils.Util;
+import exceptions.ReadWriteException;
+import utils.Util;
 
 public class Main
 {
@@ -17,5 +17,6 @@ public class Main
                 }
 
             }
+
     }
 }

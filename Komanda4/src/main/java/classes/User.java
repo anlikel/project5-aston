@@ -1,4 +1,7 @@
-package main.java;
+package classes;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
@@ -6,6 +9,15 @@ public class User implements Comparable<User>{
     private final String name;
     private final int age;
     private final String email;
+
+    @JsonCreator
+    public User(@JsonProperty("name") String name,
+                @JsonProperty("age") int age,
+                @JsonProperty("email") String email) {
+        this.name = name;
+        this.age = age;
+        this.email = email;
+    }
 
     private User(UserBuilder builder) {
         this.name = builder.name;

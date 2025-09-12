@@ -1,7 +1,6 @@
 package commands;
 
 import enums.Action;
-
 import java.util.HashMap;
 
 public class CommandFactory {

@@ -1,9 +1,9 @@
 package main.java;
 
-import main.java.controller.Controller;
-import main.java.exceptions.ReadWriteException;
-import main.java.menu.MenuPrinter;
-import main.java.utils.Holder;
+import controller.Controller;
+import exceptions.ReadWriteException;
+import menu.MenuPrinter;
+import utils.Holder;
 
 public class Program {
     private Controller controller;

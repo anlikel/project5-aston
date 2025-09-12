@@ -1,14 +1,12 @@
 package menu;
 
-
-
-import main.java.classes.Product;
-import main.java.User;
-import main.java.classfillers.Filling;
-import main.java.classfillers.FillingFactory;
-import enums.Action;
+import classes.Product;
+import classes.User;
+import classfillers.Filling;
+import classfillers.FillingFactory;
 import commands.CommandFactory;
 import controller.Controller;
+import enums.Action;
 import enums.ClassTags;
 import exceptions.ReadWriteException;
 import model.Model;

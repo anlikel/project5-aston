@@ -1,8 +1,10 @@
 package comparators;
 
-import main.java.classes.Product;
+
+import classes.Product;
 import exceptions.ReadWriteException;
 import utils.Util;
+
 
 import java.util.Comparator;
 

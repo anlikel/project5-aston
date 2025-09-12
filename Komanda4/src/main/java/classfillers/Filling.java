@@ -1,6 +1,5 @@
 package classfillers;
 
-
 import exceptions.ReadWriteException;
 
 import java.util.List;

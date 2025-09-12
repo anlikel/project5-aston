@@ -1,7 +1,6 @@
 package classfillers;
 
 import enums.ClassTags;
-
 import java.util.HashMap;
 
 public class FillingFactory {

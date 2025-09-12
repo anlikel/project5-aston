@@ -9,11 +9,8 @@ import enums.ClassTags;
 import exceptions.ReadWriteException;
 import model.Model;
 import utils.Holder;
-
 import java.util.Comparator;
 import java.util.List;
-
-import static utils.Util.writeMessage;
 
 public class SortMenuHandler {
     public static void mainSortMenuHandler(String choose) throws ReadWriteException {
@@ -28,7 +25,7 @@ public class SortMenuHandler {
                 break;
             case "2":
                 ClassTags tag=model.getTag();
-                Comparator comp=ComparatorFabric.getComparator(tag);
+                Comparator comp= ComparatorFabric.getComparator(tag);
                 Filter f=(Filter)comp;
                 f.setFilter();
                 list.sort((Comparator)f);
