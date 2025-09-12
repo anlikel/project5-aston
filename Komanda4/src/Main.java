@@ -6,12 +6,13 @@ public class Main
     public static void main( String[] args ) throws ReadWriteException {
         Program program=new Program();
         program.init();
-        try{
-            program.start();
-        } catch (ReadWriteException e) {
-            Util.writeMessage(e.toString());
-            program.start();
-        }
-
+            while(true) {
+                try {
+                    program.start();
+                } catch (ReadWriteException e) {
+                    Util.writeMessage(e.toString());
+                    program.start();
+                }
+            }
     }
 }

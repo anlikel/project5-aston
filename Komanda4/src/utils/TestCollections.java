@@ -33,7 +33,7 @@ public class TestCollections {
         products.add(pr1);
         products.add(pr2);
         products.add(pr3);
-        Comparator comp=ComparatorFabric.getComparator(ClassTags.Product);
+        Comparator comp=ComparatorFabric.getComparator(ClassTags.PRODUCT);
         ProductComparator productComparator=(ProductComparator)comp;
         productComparator.setSortField("price");
         comp=productComparator;

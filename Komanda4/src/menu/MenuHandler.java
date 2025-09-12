@@ -5,11 +5,13 @@ package menu;
 import classes.Product;
 import classes.User;
 import classfillers.Filling;
+import classfillers.FillingFactory;
 import classfillers.ProductFilling;
 import classfillers.UserFilling;
 import enums.Action;
 import commands.CommandFactory;
 import controller.Controller;
+import enums.ClassTags;
 import exceptions.ReadWriteException;
 import model.Model;
 import utils.Holder;
@@ -19,22 +21,22 @@ public class MenuHandler {
     public static void mainMenuHandler(String choose) throws ReadWriteException {
         switch(choose){
             case "0":
-                CommandFactory.getCommand(Action.Exit);
+                CommandFactory.getCommand(Action.EXIT).execute();
                 break;
             case "1":
-                CommandFactory.getCommand(Action.Create);
+                CommandFactory.getCommand(Action.CREATE).execute();
                 break;
             case "2":
-                CommandFactory.getCommand(Action.Sort);
+                CommandFactory.getCommand(Action.SORT).execute();
                 break;
             case "3":
-                CommandFactory.getCommand(Action.BinarySort);
+                CommandFactory.getCommand(Action.BINARY_SORT).execute();
                 break;
             case "4":
-                CommandFactory.getCommand(Action.Write);
+                CommandFactory.getCommand(Action.WRITE).execute();
                 break;
             case "5":
-                CommandFactory.getCommand(Action.Display);
+                CommandFactory.getCommand(Action.DISPLAY).execute();
                 break;
             default:
                 MenuPrinter.mainMenu();
@@ -45,18 +47,58 @@ public class MenuHandler {
         Controller controller= Holder.getController();
         switch(choose){
             case "1":
-                controller.setModel(new <User>Model());
-                Util.fillMenu(new UserFilling());
+                controller.setModel(new <User>Model(ClassTags.USER));
+                MenuPrinter.fillMenu();
                 break;
             case "2":
-                controller.setModel(new <Product>Model());
-                Util.fillMenu(new ProductFilling());
+                controller.setModel(new <Product>Model(ClassTags.PRODUCT));
+                MenuPrinter.fillMenu();
                 break;
             case "3":
-                CommandFactory.getCommand(Action.Exit);
+                CommandFactory.getCommand(Action.EXIT).execute();
                 break;
             default:
-                Util.classMenu();
+                MenuPrinter.classMenu();
+        }
+    }
+
+    public static void fillMenuHandler(String choose) throws ReadWriteException {
+        int size=0;
+        ClassTags tag=Holder.getController().getModel().getTag();
+        Filling filling= FillingFactory.getFiller(tag);
+        Model model=Holder.getController().getModel();
+        switch(choose){
+            case "1":
+                size=MenuPrinter.amountMenu();
+//                Util.writeMessage("*************");
+//                filling.manualFill(size).forEach(System.out::println);
+//                Util.writeMessage("*************");
+                model.setList(filling.manualFill(size));
+                Holder.getController().setModel(model);
+                Util.writeMessage("Коллекция успешно создана");
+                break;
+            case "2":
+                size=MenuPrinter.amountMenu();
+//                Util.writeMessage("*************");
+//                filling.randomFill(size).forEach(System.out::println);
+//                Util.writeMessage("*************");
+                model.setList(filling.randomFill(size));
+                Holder.getController().setModel(model);
+                Util.writeMessage("Коллекция успешно создана");
+                break;
+            case "3":
+//                Util.writeMessage("*************");
+//                filling.autoFill().forEach(System.out::println);
+//                Util.writeMessage("*************");
+                model.setList(filling.autoFill());
+                Holder.getController().setModel(model);
+                Util.writeMessage("Коллекция успешно создана");
+                break;
+            case "4":
+                CommandFactory.getCommand(Action.EXIT).execute();
+                break;
+            default:
+                MenuPrinter.fillMenu();
         }
     }
 
@@ -68,51 +110,16 @@ public class MenuHandler {
                 String number=Util.readMessage();
                 try {
                     amount=Integer.parseInt(number);
+                    //нужна проверка на отрицатедьный ввод элементов коллекции
                 }
                 catch (Exception e){
-                    Util.amountMenu();
+                    throw new ReadWriteException("некорректно введено количество элементов коллекции");
                 }
             case "2":
-                CommandFactory.getCommand(Action.Exit);
+                CommandFactory.getCommand(Action.EXIT);
         }
         return amount;
     }
 
-    public static void fillMenuHandler(String choose, Filling filling) throws ReadWriteException {
-        int size=0;
-        Model model;
-        switch(choose){
-            case "1":
-                size=Util.amountMenu();
-//                Util.writeMessage("*************");
-//                filling.manualFill(size).forEach(System.out::println);
-//                Util.writeMessage("*************");
-                model=Holder.getController().getModel();
-                model.setList(filling.manualFill(size));
-                Holder.getController().setModel(model);
-                break;
-            case "2":
-                size=Util.amountMenu();
-//                Util.writeMessage("*************");
-//                filling.randomFill(size).forEach(System.out::println);
-//                Util.writeMessage("*************");
-                model=Holder.getController().getModel();
-                model.setList(filling.randomFill(size));
-                Holder.getController().setModel(model);
-                break;
-            case "3":
-//                Util.writeMessage("*************");
-//                filling.autoFill().forEach(System.out::println);
-//                Util.writeMessage("*************");
-                model=Holder.getController().getModel();
-                model.setList(filling.autoFill());
-                Holder.getController().setModel(model);
-                break;
-            case "4":
-                CommandFactory.getCommand(Action.Exit);
-                break;
-            default:
-                Util.fillMenu(filling);
-        }
-    }
+
 }
