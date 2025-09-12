@@ -3,7 +3,7 @@ package classfillers;
 
 import classes.Product;
 import exceptions.ReadWriteException;
-import utils.FileObjectLoader;
+import utils.FileObjectLoad;
 import utils.Util;
 
 import java.util.ArrayList;
@@ -33,7 +33,6 @@ public class ProductFilling implements Filling<Product> {
                     .build();
             products.add(product);
         }
-//        products.forEach(System.out::println);
         return products;
     }
 
@@ -49,16 +48,15 @@ public class ProductFilling implements Filling<Product> {
                     .build();
             products.add(product);
         }
-//        products.forEach(System.out::println);
         return products;
     }
 
     @Override
     public List<Product> autoFill() throws ReadWriteException {
-        List<String> list= FileObjectLoader.getProductList();
+        List<String> list= FileObjectLoad.getProductList();
         List<Product>products=new ArrayList<>();
         if (list.size() < 3) {
-            throw new ReadWriteException("исключяение: слишком аленький список данных для заполнения");
+            throw new ReadWriteException("исключение: слишком маленький список данных для заполнения");
         }
         for(int i=0;i<list.size()/fieldCount;i++) {
             Product product=new Product.ProductBuilder()
@@ -68,7 +66,6 @@ public class ProductFilling implements Filling<Product> {
                     .build();
             products.add(product);
         }
-//products.forEach(System.out::println);
         return products;
     }
 }

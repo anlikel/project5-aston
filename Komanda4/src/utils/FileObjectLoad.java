@@ -8,14 +8,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
-public final class FileObjectLoader {
+public final class FileObjectLoad {
     private static List<String> productList=null;
     private static List<String> userList=null;
 
-    private FileObjectLoader(){}
+    private FileObjectLoad(){}
 
     public static List<String>getProductList() throws ReadWriteException {
         if(productList==null){
@@ -38,9 +37,10 @@ public final class FileObjectLoader {
             if(Files.exists(path)){
                 list=Files.readAllLines(path);
             }
+            else{throw new ReadWriteException("исключение: файл не существцет");}
         }
         catch(IOException e){
-            throw new ReadWriteException("исключение: ошибка чтенияфайла с данными");
+            throw new ReadWriteException("исключение: ошибка чтения файла с данными");
         }
         return list;
     }
