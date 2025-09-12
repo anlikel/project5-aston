@@ -1,5 +1,7 @@
-import exceptions.ReadWriteException;
-import utils.Util;
+package main.java;
+
+import main.java.exceptions.ReadWriteException;
+import main.java.utils.Util;
 
 public class Main
 {

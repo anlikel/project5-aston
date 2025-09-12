@@ -1,0 +1,15 @@
+product-a
+1.1
+10
+product-b
+2.2
+20
+product-c
+3.3
+10
+product-d
+4.4
+40
+product-e
+5.5
+50

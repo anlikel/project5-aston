@@ -1,6 +1,6 @@
 package comparators;
 
-import classes.User;
+import main.java.User;
 import exceptions.ReadWriteException;
 import utils.Util;
 
