@@ -1,7 +1,6 @@
 package utils;
 
 import java.util.*;
-import java.util.function.Consumer;
 
 public class MyArrayListImpl<E> implements List<E> {
     private static final int DEFAULT_CAPACITY = 10;

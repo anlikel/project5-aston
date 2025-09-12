@@ -1,4 +1,7 @@
-package main.java;
+package classes;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
@@ -6,6 +9,15 @@ public class Product implements Comparable<Product>{
     private final String title;
     private final double price;
     private final int quantity;
+
+    @JsonCreator
+    public Product(@JsonProperty("title") String title,
+                   @JsonProperty("price") double price,
+                   @JsonProperty("quantity") int quantity) {
+        this.title = title;
+        this.price = price;
+        this.quantity = quantity;
+    }
 
     private Product(ProductBuilder builder) {
         this.title = builder.title;

@@ -1,7 +1,5 @@
 package utils;
 
-
-
 import exceptions.ReadWriteException;
 
 import java.io.BufferedReader;

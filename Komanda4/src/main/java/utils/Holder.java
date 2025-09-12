@@ -1,8 +1,6 @@
 package utils;
 
-
 import controller.Controller;
-import model.Model;
 
 public class Holder {
     private static Controller controller;

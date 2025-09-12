@@ -1,11 +1,9 @@
 package classfillers;
 
-
 import classes.Product;
 import exceptions.ReadWriteException;
 import utils.FileObjectLoad;
 import utils.Util;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -53,19 +51,20 @@ public class ProductFilling implements Filling<Product> {
 
     @Override
     public List<Product> autoFill() throws ReadWriteException {
-        List<String> list= FileObjectLoad.getProductList();
-        List<Product>products=new ArrayList<>();
-        if (list.size() < 3) {
-            throw new ReadWriteException("исключение: слишком маленький список данных для заполнения");
-        }
-        for(int i=0;i<list.size()/fieldCount;i++) {
-            Product product=new Product.ProductBuilder()
-                    .setTitle(list.get(i*3))
-                    .setPrice(Double.parseDouble(list.get(i*3+1)))
-                    .setQuantity(Integer.parseInt(list.get(i*3+2)))
-                    .build();
-            products.add(product);
-        }
-        return products;
+//        List<String> list= FileObjectLoad.getProductList();
+//        List<Product>products=new ArrayList<>();
+//        if (list.size() < 3) {
+//            throw new ReadWriteException("исключение: слишком маленький список данных для заполнения");
+//        }
+//        for(int i=0;i<list.size()/fieldCount;i++) {
+//            Product product=new Product.ProductBuilder()
+//                    .setTitle(list.get(i*3))
+//                    .setPrice(Double.parseDouble(list.get(i*3+1)))
+//                    .setQuantity(Integer.parseInt(list.get(i*3+2)))
+//                    .build();
+//            products.add(product);
+//        }
+//        return products;
+        return FileObjectLoad.loadProductsFromJsonFile();
     }
 }
