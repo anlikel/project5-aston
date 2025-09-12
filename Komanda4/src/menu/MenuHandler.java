@@ -1,4 +1,4 @@
-package utils;
+package menu;
 
 
 
@@ -12,23 +12,37 @@ import commands.CommandFactory;
 import controller.Controller;
 import exceptions.ReadWriteException;
 import model.Model;
+import utils.Holder;
+import utils.Util;
 
 public class MenuHandler {
     public static void mainMenuHandler(String choose) throws ReadWriteException {
         switch(choose){
-            case "1":
-                Util.classMenu();
-                break;
-            case "2":
+            case "0":
                 CommandFactory.getCommand(Action.Exit);
                 break;
+            case "1":
+                CommandFactory.getCommand(Action.Create);
+                break;
+            case "2":
+                CommandFactory.getCommand(Action.Sort);
+                break;
+            case "3":
+                CommandFactory.getCommand(Action.BinarySort);
+                break;
+            case "4":
+                CommandFactory.getCommand(Action.Write);
+                break;
+            case "5":
+                CommandFactory.getCommand(Action.Display);
+                break;
             default:
-                Util.mainMenu();
+                MenuPrinter.mainMenu();
         }
     }
 
     public static void classMenuHandler(String choose) throws ReadWriteException {
-        Controller controller=Holder.getController();
+        Controller controller= Holder.getController();
         switch(choose){
             case "1":
                 controller.setModel(new <User>Model());
