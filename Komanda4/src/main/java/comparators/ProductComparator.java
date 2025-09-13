@@ -18,7 +18,12 @@ public class ProductComparator implements Comparator<Product>,Filter {
             case "title":
                 return p1.getTitle().compareTo(p2.getTitle());
             case "price":
-                return Double.compare(p1.getPrice(), p2.getPrice());
+                double price1 = Math.round(p1.getPrice() * 100.0) / 100.0;
+                double price2 = Math.round(p2.getPrice() * 100.0) / 100.0;
+                int priceCompare = Double.compare(price1, price2);
+                if (priceCompare != 0) {
+                    return priceCompare;
+                }
             case "quantity":
                 return Integer.compare(p1.getQuantity(), p2.getQuantity());
             default:

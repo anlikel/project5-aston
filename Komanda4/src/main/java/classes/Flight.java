@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public final class Flight implements Comparable<Flight> {
@@ -75,20 +76,18 @@ public final class Flight implements Comparable<Flight> {
 
     @Override
     public int compareTo(Flight o) {
-        int nameCompare = this.nameFlight.compareTo(o.nameFlight);
-        if(nameCompare != 0){
-            return nameCompare;
-        }
-
-        int dateCompare = this.date.compareTo(o.date);
+        int dateCompare = this.date.truncatedTo(ChronoUnit.MINUTES).compareTo(o.date.truncatedTo(ChronoUnit.MINUTES));
         if(dateCompare != 0){
             return dateCompare;
         }
-
-        return Double.compare(this.price, o.price);
+        double price1 = Math.round(this.price * 100.0) / 100.0;
+        double price2 = Math.round(o.price * 100.0) / 100.0;
+        int priceCompare = Double.compare(price1, price2);
+        if (priceCompare != 0) {
+            return priceCompare;
+        }
+        return this.nameFlight.compareTo(o.nameFlight);
     }
-
-
 
     public static class FlightBuilder{
         private  String nameFlight;

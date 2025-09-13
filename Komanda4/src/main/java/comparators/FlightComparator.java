@@ -7,6 +7,7 @@ import exceptions.ReadWriteException;
 import utils.Util;
 
 
+import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
 
 public class FlightComparator implements Comparator<Flight>,Filter {
@@ -19,9 +20,15 @@ public class FlightComparator implements Comparator<Flight>,Filter {
             case "name":
                 return f1.getNameFlight().compareTo(f2.getNameFlight());
             case "date":
-                return f1.getDate().compareTo(f2.getDate());
+                return f1.getDate().truncatedTo(ChronoUnit.MINUTES)
+                    .compareTo(f2.getDate().truncatedTo(ChronoUnit.MINUTES));
             case "price":
-                return Double.compare(f1.getPrice(), f2.getPrice());
+                double price1 = Math.round(f1.getPrice() * 100.0) / 100.0;
+                double price2 = Math.round(f2.getPrice() * 100.0) / 100.0;
+                int priceCompare = Double.compare(price1, price2);
+                if (priceCompare != 0) {
+                    return priceCompare;
+                }
             default:
                 return f1.compareTo(f2);
         }

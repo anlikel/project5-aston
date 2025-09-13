@@ -54,7 +54,6 @@ public class SortMenuHandler {
         list.forEach(System.out::println);
         Util.writeMessage("********************************************");
         ClassTags tag=model.getTag();
-//        List obj=List.of(list.get(5));
         int index=-1;
         switch(choose){
             case "1":
@@ -72,18 +71,26 @@ public class SortMenuHandler {
                 else {
                     Util.writeMessage("элемент не найден");
                 }
+                MenuPrinter.mainMenu();
                 break;
             case "2":
                 Comparator comp= ComparatorFabric.getComparator(tag);
                 Filter f=(Filter)comp;
                 f.setFilter();
                 list.sort((Comparator)f);
-                index=BinarySearcher.binarySearch(FillingFactory.getFiller(tag).manualFill(1).get(0),list,null);
+                Util.writeMessage("********************************************");
+                Util.writeMessage("*******отсортированный список объектов******");
+                list.forEach(System.out::println);
+                Util.writeMessage("********************************************");
+                List obj2=FillingFactory.getFiller(tag).manualFill(1);
+                System.out.println("************Ищем объект"+obj2.get(0)+"****");
+                index=BinarySearcher.binarySearch(obj2.get(0),list,comp);
                 if(index>=0){
                     Util.writeMessage(String.format("номер найденного элемента %d",index));}
                 else {
                     Util.writeMessage("элемент не найден");
                 }
+                MenuPrinter.mainMenu();
                 break;
             case "3":
                 CommandFactory.getCommand(Action.EXIT).execute();
