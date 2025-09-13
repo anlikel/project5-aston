@@ -1,4 +1,4 @@
-package MultiFind;
+package multiFind;
 import utils.Util;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
