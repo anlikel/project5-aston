@@ -17,5 +17,6 @@ public class FillingFactory {
         map=new HashMap<>();
         map.put(ClassTags.PRODUCT,new ProductFilling());
         map.put(ClassTags.USER,new UserFilling());
+        map.put(ClassTags.FLIGHT,new FlightFilling());
     }
 }

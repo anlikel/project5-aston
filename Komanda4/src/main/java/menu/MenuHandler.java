@@ -1,5 +1,6 @@
 package menu;
 
+import classes.Flight;
 import classes.Product;
 import classes.User;
 import classfillers.Filling;
@@ -42,6 +43,9 @@ public class MenuHandler {
     public static void classMenuHandler(String choose) throws ReadWriteException {
         Controller controller= Holder.getController();
         switch(choose){
+            case "0":
+                CommandFactory.getCommand(Action.EXIT).execute();
+                break;
             case "1":
                 controller.setModel(new <User>Model(ClassTags.USER));
                 MenuPrinter.fillMenu();
@@ -51,7 +55,8 @@ public class MenuHandler {
                 MenuPrinter.fillMenu();
                 break;
             case "3":
-                CommandFactory.getCommand(Action.EXIT).execute();
+                controller.setModel(new <Flight>Model(ClassTags.FLIGHT));
+                MenuPrinter.fillMenu();
                 break;
             default:
                 MenuPrinter.classMenu();

@@ -2,5 +2,6 @@ package enums;
 
 public enum ClassTags {
     PRODUCT,
-    USER
+    USER,
+    FLIGHT
 }

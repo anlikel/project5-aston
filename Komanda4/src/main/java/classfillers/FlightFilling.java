@@ -55,7 +55,7 @@ public class FlightFilling implements Filling<Flight>{
         Date tempDate;
         for (int i=0;i<size;i++) {
             tempDate = new Date();
-            long rnd = random.nextLong(10000) + tempDate.getTime();
+            long rnd = random.nextLong(100000) + tempDate.getTime();
             Flight flight = new Flight.FlightBuilder()
                     .setNameFlight("Flight" + random.nextInt(1000))
                     .setDate(new Date(rnd))

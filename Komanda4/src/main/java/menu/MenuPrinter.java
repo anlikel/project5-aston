@@ -20,9 +20,10 @@ public class MenuPrinter {
         String choose = null;
         try {
             Util.writeMessage("Выберите класс");
+            Util.writeMessage("0-Выход");
             Util.writeMessage("1-User");
             Util.writeMessage("2-Product");
-            Util.writeMessage("3-Выход");
+            Util.writeMessage("3-Flight");
             choose = Util.readMessage();
             MenuHandler.classMenuHandler(choose);
         } catch (ReadWriteException e) {
