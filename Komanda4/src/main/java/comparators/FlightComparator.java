@@ -19,7 +19,7 @@ public class FlightComparator implements Comparator<Flight>,Filter {
             case "name":
                 return f1.getNameFlight().compareTo(f2.getNameFlight());
             case "date":
-                return Long.compare(f1.getDate().getTime(), f2.getDate().getTime());
+                return f1.getDate().compareTo(f2.getDate());
             case "price":
                 return Double.compare(f1.getPrice(), f2.getPrice());
             default:

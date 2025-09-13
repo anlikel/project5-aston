@@ -1,5 +1,6 @@
 package utils;
 
+import classes.Flight;
 import classes.Product;
 import classes.User;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -21,6 +22,7 @@ public final class FileObjectLoad {
     static String usersFile="src/main/resources/user.txt";
     static String productsFile2="src/main/resources/product2.txt";
     static String usersFile2="src/main/resources/user2.txt";
+    static String flightsFile="src/main/resources/flight.txt";
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     private FileObjectLoad(){}
@@ -92,6 +94,26 @@ public final class FileObjectLoad {
 
         } catch (IOException e) {
             throw new ReadWriteException("Исключение: ошибка чтения JSON файла " + productsFile2 + ": " + e.getMessage());
+        }
+    }
+
+    public static List<Flight> loadFlightFromJsonFile() throws ReadWriteException {
+        try {
+            if (!Files.exists(Path.of(flightsFile))) {
+                throw new ReadWriteException("Исключение: файл не существует - " + flightsFile);
+            }
+
+            if (Files.size(Path.of(flightsFile)) == 0) {
+                return List.of();
+            }
+
+            return objectMapper.readValue(
+                    new File(flightsFile),
+                    new TypeReference<List<Flight>>() {}
+            );
+
+        } catch (IOException e) {
+            throw new ReadWriteException("Исключение: ошибка чтения JSON файла " + flightsFile + ": " + e.getMessage());
         }
     }
     /// //////////////////////////////////////////////////////////////

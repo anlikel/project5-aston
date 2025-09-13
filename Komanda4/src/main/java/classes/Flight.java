@@ -1,13 +1,35 @@
 package classes;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public final class Flight implements Comparable<Flight> {
     private final String nameFlight;
-    private final Date date;
+
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private final LocalDateTime date;
+
     private final double price;
+
+    @JsonCreator
+    public Flight(@JsonProperty("nameFlight") String nameFlight,
+                  @JsonProperty("date") LocalDateTime date,
+                  @JsonProperty("price") double price) {
+        this.nameFlight = nameFlight;
+        this.date = date;
+        this.price = price;
+    }
 
     public Flight(FlightBuilder flightBuilder) {
         this.nameFlight = flightBuilder.nameFlight;
@@ -19,7 +41,7 @@ public final class Flight implements Comparable<Flight> {
         return nameFlight;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
@@ -44,8 +66,8 @@ public final class Flight implements Comparable<Flight> {
 
     @Override
     public String toString() {
-        DateFormat fmt = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-        String text = fmt.format(date);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        String text = date.format(formatter);
 
         return String.format("Flight{nameFlight='%s', date='%s', price=%.2f}",
                 nameFlight, text, price);
@@ -70,7 +92,7 @@ public final class Flight implements Comparable<Flight> {
 
     public static class FlightBuilder{
         private  String nameFlight;
-        private  Date date;
+        private  LocalDateTime date;
         private  double price;
 
         public FlightBuilder setNameFlight (String nameFlight){
@@ -78,7 +100,7 @@ public final class Flight implements Comparable<Flight> {
             return this;
         }
 
-        public FlightBuilder setDate(Date date){
+        public FlightBuilder setDate(LocalDateTime date){
             this.date = date;
             return this;
         }
