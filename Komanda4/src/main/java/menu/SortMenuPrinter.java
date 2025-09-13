@@ -17,4 +17,20 @@ public class SortMenuPrinter {
             SortMenuPrinter.mainSortMenu();
         }
     }
+
+    public static void binarySearchMenu(){
+        String choose = null;
+        try {
+            Util.writeMessage("Меню бинарного поиска.");
+            Util.writeMessage("Массив должен быть отсортирован.");
+            Util.writeMessage("1-Бинарный поиск после натуральной сортировки");
+            Util.writeMessage("2-Бинарный поиск после сортировки по выбору");
+            Util.writeMessage("3-Выход");
+            choose = Util.readMessage();
+            SortMenuHandler.binarySearchMenuHandler(choose);
+        } catch (ReadWriteException e) {
+            Util.writeMessage(e.toString());
+            SortMenuPrinter.mainSortMenu();
+        }
+    }
 }

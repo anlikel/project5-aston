@@ -81,11 +81,12 @@ public class Product implements Comparable<Product>{
         if (titleCompare != 0) {
             return titleCompare;
         }
-        int priceCompare = Double.compare(this.price, other.price);
+        double price1 = Math.round(this.price * 100.0) / 100.0;
+        double price2 = Math.round(other.price * 100.0) / 100.0;
+        int priceCompare = Double.compare(price1, price2);
         if (priceCompare != 0) {
             return priceCompare;
         }
         return Integer.compare(this.quantity, other.quantity);
     }
-
 }
