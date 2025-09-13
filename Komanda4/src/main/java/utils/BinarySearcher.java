@@ -6,7 +6,7 @@ import exceptions.ReadWriteException;
 import java.util.Comparator;
 import java.util.List;
 
-public class BinarySearcher <E>{
+public class BinarySearcher{
 
     public static void main(String[] args) throws ReadWriteException {
         List<User>users=FileObjectLoad.loadUsersFromJsonFile();
@@ -21,13 +21,13 @@ public class BinarySearcher <E>{
         System.out.println(user.equals(user2));
 
         users.sort(null);
-        int index=new BinarySearcher<User>().binarySearch(user,users,null);
+        int index=BinarySearcher.binarySearch(user,users,null);
         System.out.println(index);
         User user3=users.get(index);
         System.out.println(user3);
     }
 
-    public int binarySearch(E key, List<E> list, Comparator<? super E> comparator) {
+    public static <E>int binarySearch(E key, List<E> list, Comparator<? super E> comparator) {
         int size=list.size();
         int low = 0;
         int high = size - 1;
