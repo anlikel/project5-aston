@@ -6,17 +6,16 @@ import java.time.format.DateTimeParseException;
 
 public class Validator {
 
-    private Validator() {}
+    private Validator() {
+    }
 
-    public static boolean isValidName(String fullName){
-        if (fullName == null || fullName.trim().isEmpty()) {
-            return false;
-        }
+    public static boolean isValidName(String fullName) {
+        if (fullName == null || fullName.trim().isEmpty()) { return false; }
 
         String regex = "^[A-ZА-Я][a-zа-я]*(?:-[A-ZА-Я][a-zа-я]*)*$";
         String[] names = fullName.trim().split(" ");
 
-        for (String name : names){
+        for (String name : names) {
             if (!name.matches(regex)) return false;
         }
 
@@ -24,9 +23,8 @@ public class Validator {
     }
 
     public static boolean isValidAge(String age) {
-        if (age == null || age.trim().isEmpty()) {
-            return false;
-        }
+        if (age == null || age.trim().isEmpty()) { return false; }
+
         try {
             int ageInt = Integer.parseInt(age.trim());
             return ageInt >= 0 && ageInt <= 100;
@@ -36,18 +34,14 @@ public class Validator {
     }
 
     public static boolean isValidEmail(String email) {
-        if (email == null || email.trim().isEmpty()) {
-            return false;
-        }
+        if (email == null || email.trim().isEmpty()) { return false; }
 
         String emailRegex = "^[A-Za-z0-9.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
         return email.matches(emailRegex);
     }
 
     public static boolean isValidPrise(String prise) {
-        if (prise == null || prise.trim().isEmpty()) {
-            return false;
-        }
+        if (prise == null || prise.trim().isEmpty()) { return false; }
 
         try {
             double praseDouble = Double.parseDouble(prise.trim());
@@ -58,9 +52,7 @@ public class Validator {
     }
 
     public static boolean isValidQuantity(String quantity) {
-        if (quantity == null || quantity.trim().isEmpty()) {
-            return false;
-        }
+        if (quantity == null || quantity.trim().isEmpty()) { return false; }
 
         try {
             int quantityInt = Integer.parseInt(quantity.trim());
@@ -74,23 +66,38 @@ public class Validator {
         return title != null && !title.trim().isEmpty() && title.matches("[A-Za-zА-Яа-я\\-\\s]+");
     }
 
-    public static boolean isValidDate(String date){
+    public static boolean isValidDate(String date) {
         return isValidDate(date, "dd.MM.yyyy HH:mm");
     }
 
-    public static boolean isValidDate(String date, String pattern){
-            if (date == null || date.trim().isEmpty()) {
-                return false;
-            }
+    public static boolean isValidDate(String date, String pattern) {
+        if (date == null || date.trim().isEmpty()) { return false; }
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
 
-            try {
-                LocalDateTime.parse(date, formatter);
-                return true;
-            } catch (DateTimeParseException e) {
-                return false;
-            }
+        try {
+            LocalDateTime.parse(date, formatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+    }
+
+    public static boolean isValidCity(String city) {
+        if (city == null || city.trim().isEmpty()) { return false; }
+        return city.matches("^[A-ZА-Я][A-ZА-Яa-zа-я\\-\\s]*$");
+    }
+
+    public static boolean isValidRating(String rating) {
+        double ratingDouble;
+
+        try {
+            ratingDouble = Double.parseDouble(rating);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+        return ratingDouble <= 5 && ratingDouble >= 0;
     }
 }
 
