@@ -3,6 +3,7 @@ package classfillers;
 import classes.Product;
 import exceptions.ReadWriteException;
 import utils.FileObjectLoad;
+import utils.MyArrayListImpl;
 import utils.Util;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class ProductFilling implements Filling<Product> {
 
     @Override
     public List<Product> manualFill(int size) throws ReadWriteException {
-        List<Product>products=new ArrayList<>();
+        List<Product>products=new MyArrayListImpl<>();
         for (int i=0;i<size;i++) {
             Util.writeMessage("input product title");
             title= Util.readMessage();
