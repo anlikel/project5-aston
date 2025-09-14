@@ -2,6 +2,9 @@ package classfillers;
 
 import classes.Hotel;
 import classes.User;
+import commands.Command;
+import commands.CommandFactory;
+import enums.Action;
 import exceptions.ReadWriteException;
 import utils.MyArrayListImpl;
 import utils.Util;
@@ -55,6 +58,9 @@ public class HotelFilling implements Filling<Hotel> {
 
     @Override
     public List<Hotel> autoFill() throws ReadWriteException {
-        return List.of();
+        Command command= CommandFactory.getCommand(Action.READ);
+        command.execute();
+        ReadCommand readCommand=(ReadCommand) command;
+        return readCommand.getList();
     }
 }
