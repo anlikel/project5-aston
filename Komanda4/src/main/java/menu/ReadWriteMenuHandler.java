@@ -46,14 +46,14 @@ public class ReadWriteMenuHandler {
                 CommandFactory.getCommand(Action.EXIT).execute();
                 break;
             case "1":
-                String file1= Holder.listFile;
-                FileObjectSave.saveListToFile(file1);
+                ReadWriteMenuPrinter.mainWriteTargetMenu();
+                String choose1= Util.readMessage();
+                ReadWriteMenuHandler.mainWriteTargetMenuHandlerRewrite(choose1);
                 break;
             case "2":
-                Util.writeMessage("введите имя файла для чтения");
-                String file2= Util.readMessage();
-                //проверить файл корректность
-                FileObjectLoad.getFileList(file2);
+                ReadWriteMenuPrinter.mainWriteTargetMenu();
+                String choose2= Util.readMessage();
+                ReadWriteMenuHandler.mainWriteTargetMenuHandlerAppend(choose2);
                 break;
             default:
                 Util.writeMessage("некорректный выбор пункта меню");
@@ -61,4 +61,45 @@ public class ReadWriteMenuHandler {
         }
     }
 
+    public static void mainWriteTargetMenuHandlerRewrite(String choose) throws ReadWriteException {
+        switch(choose){
+            case "0":
+                CommandFactory.getCommand(Action.EXIT).execute();
+                break;
+            case "1":
+                String file1= Holder.listFile;
+                FileObjectSave.saveListToFile(file1);
+                break;
+            case "2":
+                Util.writeMessage("введите имя файла для чтения");
+                String file2= Util.readMessage();
+                //проверить файл корректность
+                FileObjectSave.saveListToFile(file2);
+                break;
+            default:
+                Util.writeMessage("некорректный выбор пункта меню");
+                ReadWriteMenuPrinter.mainReadMenu();
+        }
+    }
+
+    public static void mainWriteTargetMenuHandlerAppend(String choose) throws ReadWriteException {
+        switch(choose){
+            case "0":
+                CommandFactory.getCommand(Action.EXIT).execute();
+                break;
+            case "1":
+                String file1= Holder.listFile;
+                FileObjectSave.saveListToFileWithAppend(file1);
+                break;
+            case "2":
+                Util.writeMessage("введите имя файла для чтения");
+                String file2= Util.readMessage();
+                //проверить файл корректность
+                FileObjectSave.saveListToFileWithAppend(file2);
+                break;
+            default:
+                Util.writeMessage("некорректный выбор пункта меню");
+                ReadWriteMenuPrinter.mainReadMenu();
+        }
+    }
 }
