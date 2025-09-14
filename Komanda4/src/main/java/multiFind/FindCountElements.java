@@ -1,25 +1,34 @@
 package multiFind;
+import model.Model;
+import utils.Holder;
 import utils.Util;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class FindCountElements<T> {
-    private int countThread;
-    private AtomicInteger countElement;
+//    private int countThread;
+//    private AtomicInteger countElement;
+//
+//    private List<T> listElements;
+//
+//    private T element;
+//
+//    public FindCountElements(List<T> list, T element){
+//        this.listElements = list;
+//        this.countThread = Runtime.getRuntime().availableProcessors();
+//        this.element = element;
+//        this.countElement = new AtomicInteger(0);
+//    }
 
-    private List<T> listElements;
 
-    private T element;
 
-    public FindCountElements(List<T> list, T element){
-        this.listElements = list;
-        this.countThread = Runtime.getRuntime().availableProcessors();
-        this.element = element;
-        this.countElement = new AtomicInteger(0);
-    }
+    public static <T> void find(T element) throws InterruptedException {
+        int countThread = Runtime.getRuntime().availableProcessors();
+        AtomicInteger countElement = new AtomicInteger(0);
+        List listElements = Holder.getController().getModel().getList();
 
-    public  void find() throws InterruptedException {
+
         int start = 0;
         int size = 0;
         if(listElements != null) {
@@ -50,7 +59,7 @@ public class FindCountElements<T> {
 
             Thread thread = new Thread(()->{
                 try {
-                    forCaunt(st, fn);
+                    forCaunt(listElements, element ,st, fn, countElement);
                 }finally {
                     latch.countDown();
                 }
@@ -64,7 +73,7 @@ public class FindCountElements<T> {
         Util.writeMessage("Количество вхождения элемента в коллекцию - " + countElement);
     }
 
-    private void forCaunt(int start, int fin){
+    private static<T> void forCaunt(List listElements,T element, int start, int fin, AtomicInteger countElement){
         for(int i = start; i < fin; i++){
             if(listElements.get(i).equals(element)){
                     countElement.incrementAndGet();
