@@ -11,4 +11,9 @@ public class ReadWriteMenuPrinter {
         Util.writeMessage("1-Чтение из файла по умолчанию");
         Util.writeMessage("2-Чтение из определенного файла");
     }
+    public static void mainWriteMenu() throws ReadWriteException {
+        Util.writeMessage("0-Выход");
+        Util.writeMessage("1-Запись в файл по умолчанию");
+        Util.writeMessage("2-Запись в определенный файл");
+    }
 }
