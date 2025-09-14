@@ -1,5 +1,9 @@
 package utils;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Validator {
 
     private Validator() {}
@@ -66,9 +70,27 @@ public class Validator {
         }
     }
 
-
     public static boolean isValidTitle(String title) {
         return title != null && !title.trim().isEmpty() && title.matches("[A-Za-zА-Яа-я\\-\\s]+");
+    }
+
+    public static boolean isValidDate(String date){
+        return isValidDate(date, "dd/MM/yyyy HH:mm");
+    }
+
+    public static boolean isValidDate(String date, String pattern){
+            if (date == null || date.trim().isEmpty()) {
+                return false;
+            }
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+
+            try {
+                LocalDateTime.parse(date, formatter);
+                return true;
+            } catch (DateTimeParseException e) {
+                return false;
+            }
     }
 }
 
