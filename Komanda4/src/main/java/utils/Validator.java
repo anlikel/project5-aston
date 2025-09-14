@@ -75,7 +75,7 @@ public class Validator {
     }
 
     public static boolean isValidDate(String date){
-        return isValidDate(date, "dd/MM/yyyy HH:mm");
+        return isValidDate(date, "dd.MM.yyyy HH:mm");
     }
 
     public static boolean isValidDate(String date, String pattern){
