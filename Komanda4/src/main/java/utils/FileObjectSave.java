@@ -7,14 +7,13 @@ import java.io.IOException;
 import java.util.List;
 
 public class FileObjectSave {
-    private static String fileName="src/main/resources/list.txt";
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     static {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
     }
 
-    public static void saveListToFile() {
+    public static void saveListToFile(String fileName) {
         try {
             List list = getListFromModel();
             objectMapper.writeValue(new File(fileName), list);

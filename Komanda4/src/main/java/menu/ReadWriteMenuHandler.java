@@ -10,6 +10,7 @@ import enums.ClassTags;
 import exceptions.ReadWriteException;
 import model.Model;
 import utils.FileObjectLoad;
+import utils.FileObjectSave;
 import utils.Holder;
 import utils.Util;
 
@@ -33,9 +34,31 @@ public class ReadWriteMenuHandler {
                 list= FileObjectLoad.getFileList(file2);
                 break;
             default:
+                Util.writeMessage("некорректный выбор пункта меню");
                 ReadWriteMenuPrinter.mainReadMenu();
         }
         return list;
+    }
+
+    public static void mainWriteMenuHandler(String choose) throws ReadWriteException {
+        switch(choose){
+            case "0":
+                CommandFactory.getCommand(Action.EXIT).execute();
+                break;
+            case "1":
+                String file1= Holder.listFile;
+                FileObjectSave.saveListToFile(file1);
+                break;
+            case "2":
+                Util.writeMessage("введите имя файла для чтения");
+                String file2= Util.readMessage();
+                //проверить файл корректность
+                FileObjectLoad.getFileList(file2);
+                break;
+            default:
+                Util.writeMessage("некорректный выбор пункта меню");
+                ReadWriteMenuPrinter.mainReadMenu();
+        }
     }
 
 }
