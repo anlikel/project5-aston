@@ -21,6 +21,7 @@ public class CommandFactory {
         map.put(Action.BINARY_SEARCH,new BinarySearchCommand());
         map.put(Action.WRITE,new WriteCommand());
         map.put(Action.DISPLAY,new DisplayCommand());
+        map.put(Action.READ,new ReadCommand());
     }
 
 
