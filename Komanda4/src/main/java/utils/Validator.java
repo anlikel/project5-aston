@@ -4,8 +4,19 @@ public class Validator {
 
     private Validator() {}
 
-    public static boolean isValidNameOrTitle(String name) {
-        return name != null && !name.trim().isEmpty() && name.matches("[A-Za-zА-Яа-яs]+");
+    public static boolean isValidName(String fullName){
+        if (fullName == null || fullName.trim().isEmpty()) {
+            return false;
+        }
+
+        String regex = "^[A-ZА-Я][a-zа-я]*(?:-[A-ZА-Я][a-zа-я]*)*$";
+        String[] names = fullName.trim().split(" ");
+
+        for (String name : names){
+            if (!name.matches(regex)) return false;
+        }
+
+        return true;
     }
 
     public static boolean isValidAge(String age) {
@@ -53,6 +64,11 @@ public class Validator {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+
+    public static boolean isValidTitle(String title) {
+        return title != null && !title.trim().isEmpty() && title.matches("[A-Za-zА-Яа-я\\-\\s]+");
     }
 }
 
