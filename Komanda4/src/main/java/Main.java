@@ -13,7 +13,6 @@ public class Main
                     Util.writeMessage(e.toString());
                     program.start();
                 }
-
             }
 
     }

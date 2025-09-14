@@ -2,6 +2,7 @@ package classfillers;
 
 import classes.Flight;
 import exceptions.ReadWriteException;
+import utils.MyArrayListImpl;
 import utils.Util;
 import utils.FileObjectLoad;
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ public class FlightFilling implements Filling<Flight> {
 
     @Override
     public List<Flight> manualFill(int size) throws ReadWriteException {
-        List<Flight> temp = new ArrayList<>();
+        List<Flight> temp =new MyArrayListImpl<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
         for (int i = 0; i < size; i++) {
