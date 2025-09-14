@@ -1,6 +1,9 @@
 package utils;
 
+import exceptions.ReadWriteException;
+
 import java.util.*;
+import java.util.concurrent.CountDownLatch;
 
 public class MyArrayListImpl<E> implements List<E> {
     private static final int DEFAULT_CAPACITY = 10;
@@ -323,7 +326,7 @@ public class MyArrayListImpl<E> implements List<E> {
         throw new UnsupportedOperationException("subList not supported");
     }
 
-    public void sort(Comparator<? super E> comparator) {
+    private void simpleSort(Comparator<? super E> comparator) {
         quickSort(0, size - 1, comparator);
     }
 
@@ -398,6 +401,67 @@ public class MyArrayListImpl<E> implements List<E> {
         }
         sb.append(']');
         return sb.toString();
+    }
+
+    public void sort(Comparator<? super E> comparator){
+        if(size<=1){return;}
+        int mid=size/2;
+        MyArrayListImpl<E>left=new MyArrayListImpl<>();
+        MyArrayListImpl<E>right=new MyArrayListImpl<>();
+
+        for(int i=0;i<mid;i++){left.add(get(i));}
+        for(int i=mid;i<size;i++){right.add(get(i));}
+
+        CountDownLatch latch=new CountDownLatch(2);
+
+        new Thread(()->{
+            left.simpleSort(comparator);
+            latch.countDown();
+        }).start();
+
+     new Thread(()->{
+        right.simpleSort(comparator);
+        latch.countDown();
+    }).start();
+
+try{
+    latch.await();
+    clear();
+    merge(left,right,comparator);
+}
+catch(InterruptedException e){
+    Thread.currentThread().interrupt();
+    throw new RuntimeException("ошибка сортировки");
+        }
+}
+    private void merge(MyArrayListImpl<E> left, MyArrayListImpl<E> right, Comparator<? super E> comparator) {
+        int i = 0;
+        int j = 0;
+        while (i < left.size() && j < right.size()) {
+            int comparison;
+
+            if (comparator != null) {
+                comparison = comparator.compare(left.get(i), right.get(j));
+            } else {
+                Comparable<? super E> leftElement = (Comparable<? super E>) left.get(i);
+                comparison = leftElement.compareTo(right.get(j));
+            }
+            if (comparison <= 0) {
+                this.add(left.get(i));
+                i++;
+            } else {
+                this.add(right.get(j));
+                j++;
+            }
+        }
+        while (i < left.size()) {
+            this.add(left.get(i));
+            i++;
+        }
+        while (j < right.size()) {
+            this.add(right.get(j));
+            j++;
+        }
     }
 
 }
