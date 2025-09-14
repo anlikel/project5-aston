@@ -6,5 +6,6 @@ public enum Action {
     SORT,
     BINARY_SEARCH,
     WRITE,
-    DISPLAY
+    DISPLAY,
+    READ
 }

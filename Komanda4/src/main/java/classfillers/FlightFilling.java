@@ -1,7 +1,13 @@
 package classfillers;
 
 import classes.Flight;
+import commands.Command;
+import commands.CommandFactory;
+import commands.ReadCommand;
+import enums.Action;
 import exceptions.ReadWriteException;
+import utils.Holder;
+import utils.MyArrayListImpl;
 import utils.Util;
 import utils.FileObjectLoad;
 import java.time.LocalDateTime;
@@ -20,7 +26,7 @@ public class FlightFilling implements Filling<Flight> {
 
     @Override
     public List<Flight> manualFill(int size) throws ReadWriteException {
-        List<Flight> temp = new ArrayList<>();
+        List<Flight> temp =new MyArrayListImpl<>();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
         for (int i = 0; i < size; i++) {
@@ -76,27 +82,9 @@ public class FlightFilling implements Filling<Flight> {
 
     @Override
     public List<Flight> autoFill() throws ReadWriteException {
-//        List<String> list= FileObjectLoad.getFlightList();
-//
-//        List<Flight> temp =new ArrayList<>();
-//        DateFormat fmt = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-//        if (list.size() % multiple != 0) {
-//            throw new ReadWriteException("исключяение: не верный формат файла");
-//        }
-//        for(int i=0;i<list.size()/multiple;i++) {
-//            try {
-//                Flight flight = new Flight.FlightBuilder()
-//                        .setNameFlight(list.get(i*3))
-//                        .setDate (fmt.parse (list.get(i*3+1)))
-//                        .setPrice(Double.parseDouble(list.get(i*3+2)))
-//                        .build();
-//                temp.add(flight);
-//            } catch (ParseException e) {
-//               throw  new ReadWriteException("исключение: ошибка чтения файла");
-//            }
-//
-//        }
-//        return temp;
-        return FileObjectLoad.loadFlightFromJsonFile();
+        Command command= CommandFactory.getCommand(Action.READ);
+        command.execute();
+        ReadCommand readCommand=(ReadCommand) command;
+        return readCommand.getList();
     }
 }

@@ -1,5 +1,7 @@
 package commands;
 
+import exceptions.ReadWriteException;
+
 public interface Command {
-    void execute();
+    void execute() throws ReadWriteException;
 }

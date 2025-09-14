@@ -1,8 +1,14 @@
 package classfillers;
 
 import classes.Product;
+import commands.Command;
+import commands.CommandFactory;
+import commands.ReadCommand;
+import enums.Action;
 import exceptions.ReadWriteException;
 import utils.FileObjectLoad;
+import utils.Holder;
+import utils.MyArrayListImpl;
 import utils.Util;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +22,7 @@ public class ProductFilling implements Filling<Product> {
 
     @Override
     public List<Product> manualFill(int size) throws ReadWriteException {
-        List<Product>products=new ArrayList<>();
+        List<Product>products=new MyArrayListImpl<>();
         for (int i=0;i<size;i++) {
             Util.writeMessage("input product title");
             title= Util.readMessage();
@@ -51,20 +57,9 @@ public class ProductFilling implements Filling<Product> {
 
     @Override
     public List<Product> autoFill() throws ReadWriteException {
-//        List<String> list= FileObjectLoad.getProductList();
-//        List<Product>products=new ArrayList<>();
-//        if (list.size() < 3) {
-//            throw new ReadWriteException("исключение: слишком маленький список данных для заполнения");
-//        }
-//        for(int i=0;i<list.size()/fieldCount;i++) {
-//            Product product=new Product.ProductBuilder()
-//                    .setTitle(list.get(i*3))
-//                    .setPrice(Double.parseDouble(list.get(i*3+1)))
-//                    .setQuantity(Integer.parseInt(list.get(i*3+2)))
-//                    .build();
-//            products.add(product);
-//        }
-//        return products;
-        return FileObjectLoad.loadProductsFromJsonFile();
+        Command command= CommandFactory.getCommand(Action.READ);
+        command.execute();
+        ReadCommand readCommand=(ReadCommand) command;
+        return readCommand.getList();
     }
 }

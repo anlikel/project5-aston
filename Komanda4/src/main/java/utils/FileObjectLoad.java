@@ -5,6 +5,7 @@ import classes.Product;
 import classes.User;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import enums.ClassTags;
 import exceptions.ReadWriteException;
 
 import java.io.File;
@@ -15,114 +16,86 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public final class FileObjectLoad {
-    private static List<String> productList=null;
-    private static List<String> userList=null;
-    private static List<String> flightList=null;
-    static String productsFile="src/main/resources/product.txt";
-    static String usersFile="src/main/resources/user.txt";
-    static String productsFile2="src/main/resources/product2.txt";
-    static String usersFile2="src/main/resources/user2.txt";
-    static String flightsFile="src/main/resources/flight.txt";
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     private FileObjectLoad(){}
 
-    public static List<String>getProductList() throws ReadWriteException {
-        if(productList==null){
-            productList=loadListFromFile(productsFile);
-        }
-        return productList;
-    }
-
-    public static List<String>getUserList() throws ReadWriteException {
-        if(userList==null){
-            userList=loadListFromFile(usersFile);
-        }
-        return userList;
-    }
-
-    private static List<String>loadListFromFile(String filename) throws ReadWriteException {
-        Path path= Paths.get(filename);
-        List<String>list=null;
-        try{
-            if(Files.exists(path)){
-                list=Files.readAllLines(path);
-            }
-            else{throw new ReadWriteException("исключение: файл не существцет");}
-        }
-        catch(IOException e){
-            throw new ReadWriteException("исключение: ошибка чтения файла с данными");
-        }
-        return list;
-    }
-
-    public static List<User> loadUsersFromJsonFile() throws ReadWriteException {
+    public static List<User> loadUsersFromJsonFile(String file) throws ReadWriteException {
         try {
 
-            if (!Files.exists(Path.of(usersFile2))) {
-                throw new ReadWriteException("Исключение: файл не существует - " + usersFile2);
+            if (!Files.exists(Path.of(file))) {
+                throw new ReadWriteException("Исключение: файл не существует - " + file);
             }
 
-            if (Files.size(Path.of(usersFile2))==0) {
+            if (Files.size(Path.of(file))==0) {
                 return List.of();
             }
 
             return objectMapper.readValue(
-                    new File(usersFile2),
+                    new File(file),
                     new TypeReference<List<User>>() {}
             );
 
         } catch (IOException e) {
-            throw new ReadWriteException("Исключение: ошибка чтения JSON файла " + usersFile2 + ": " + e.getMessage());
+            throw new ReadWriteException("Исключение: ошибка чтения JSON файла " + file + ": " + e.getMessage());
         }
     }
 
-    public static List<Product> loadProductsFromJsonFile() throws ReadWriteException {
+    public static List<Product> loadProductsFromJsonFile(String file) throws ReadWriteException {
         try {
-            if (!Files.exists(Path.of(productsFile2))) {
-                throw new ReadWriteException("Исключение: файл не существует - " + productsFile2);
+            if (!Files.exists(Path.of(file))) {
+                throw new ReadWriteException("Исключение: файл не существует - " + file);
             }
 
-            if (Files.size(Path.of(productsFile2))==0) {
+            if (Files.size(Path.of(file))==0) {
                 return List.of();
+
             }
 
             return objectMapper.readValue(
-                    new File(productsFile2),
+                    new File(file),
                     new TypeReference<List<Product>>() {}
             );
 
         } catch (IOException e) {
-            throw new ReadWriteException("Исключение: ошибка чтения JSON файла " + productsFile2 + ": " + e.getMessage());
+            throw new ReadWriteException("Исключение: ошибка чтения JSON файла " + file + ": " + e.getMessage());
         }
     }
 
-    public static List<Flight> loadFlightFromJsonFile() throws ReadWriteException {
+    public static List<Flight> loadFlightFromJsonFile(String file) throws ReadWriteException {
         try {
-            if (!Files.exists(Path.of(flightsFile))) {
-                throw new ReadWriteException("Исключение: файл не существует - " + flightsFile);
+            if (!Files.exists(Path.of(file))) {
+                throw new ReadWriteException("Исключение: файл не существует - " + file);
             }
 
-            if (Files.size(Path.of(flightsFile)) == 0) {
+            if (Files.size(Path.of(file)) == 0) {
                 return List.of();
             }
 
             return objectMapper.readValue(
-                    new File(flightsFile),
+                    new File(file),
                     new TypeReference<List<Flight>>() {}
             );
 
         } catch (IOException e) {
-            throw new ReadWriteException("Исключение: ошибка чтения JSON файла " + flightsFile + ": " + e.getMessage());
+            throw new ReadWriteException("Исключение: ошибка чтения JSON файла " + file + ": " + e.getMessage());
         }
     }
-    /// //////////////////////////////////////////////////////////////
-    public static List<String>getFlightList() throws ReadWriteException {
-        if(flightList==null){
-            flightList = loadListFromFile("src/properties/flight.txt");
+
+    public static List getFileList(String file) throws ReadWriteException {
+        List list=null;
+        ClassTags tag=Holder.getController().getModel().getTag();
+        switch (tag){
+            case PRODUCT:
+                list=loadProductsFromJsonFile(file);
+                break;
+            case USER:
+                list=loadUsersFromJsonFile(file);
+                break;
+            case FLIGHT:
+                list=loadFlightFromJsonFile(file);
+                break;
         }
-        return flightList;
+        return list;
     }
-
-
 }
