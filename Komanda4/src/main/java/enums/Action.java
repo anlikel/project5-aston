@@ -7,5 +7,6 @@ public enum Action {
     BINARY_SEARCH,
     WRITE,
     DISPLAY,
-    READ
+    READ,
+    FIND
 }
