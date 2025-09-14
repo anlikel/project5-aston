@@ -15,7 +15,6 @@ public class FindComand  implements Command{
         var element= new <Object>Model(el);//заглушка
 
 
-
         try {
             FindCountElements.find(element);
         } catch (InterruptedException e) {

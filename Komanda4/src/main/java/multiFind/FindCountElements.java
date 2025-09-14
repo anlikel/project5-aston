@@ -28,7 +28,6 @@ public class FindCountElements<T> {
         AtomicInteger countElement = new AtomicInteger(0);
         List listElements = Holder.getController().getModel().getList();
 
-
         int start = 0;
         int size = 0;
         if(listElements != null) {
