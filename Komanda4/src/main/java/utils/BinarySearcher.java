@@ -9,7 +9,7 @@ import java.util.List;
 public class BinarySearcher{
 
     public static void main(String[] args) throws ReadWriteException {
-        List<User>users=FileObjectLoad.loadUsersFromJsonFile();
+        List<User>users=FileObjectLoad.loadUsersFromJsonFile(Holder.usersFile);
         User user = new User.UserBuilder()
                 .setName("User57")
                 .setAge(36)

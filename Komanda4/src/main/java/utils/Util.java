@@ -1,5 +1,6 @@
 package utils;
 
+import enums.ClassTags;
 import exceptions.ReadWriteException;
 
 import java.io.BufferedReader;
@@ -21,5 +22,22 @@ public class Util {
             throw new ReadWriteException("исключение: ошибка чтения из консоли");
         }
         return str;
+    }
+
+    public static String getFileName(){
+        String filename = "";
+        ClassTags tag=Holder.getController().getModel().getTag();
+        switch (tag){
+            case PRODUCT:
+                filename=Holder.productsFile;
+                break;
+            case USER:
+                filename=Holder.usersFile;
+                break;
+            case FLIGHT:
+                filename=Holder.flightsFile;
+                break;
+        }
+        return filename;
     }
 }

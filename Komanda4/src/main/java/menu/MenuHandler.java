@@ -71,26 +71,17 @@ public class MenuHandler {
         switch(choose){
             case "1":
                 size=MenuPrinter.amountMenu();
-//                Util.writeMessage("*************");
-//                filling.manualFill(size).forEach(System.out::println);
-//                Util.writeMessage("*************");
                 model.setList(filling.manualFill(size));
                 Holder.getController().setModel(model);
                 Util.writeMessage("Коллекция успешно создана");
                 break;
             case "2":
                 size=MenuPrinter.amountMenu();
-//                Util.writeMessage("*************");
-//                filling.randomFill(size).forEach(System.out::println);
-//                Util.writeMessage("*************");
                 model.setList(filling.randomFill(size));
                 Holder.getController().setModel(model);
                 Util.writeMessage("Коллекция успешно создана");
                 break;
             case "3":
-//                Util.writeMessage("*************");
-//                filling.autoFill().forEach(System.out::println);
-//                Util.writeMessage("*************");
                 model.setList(filling.autoFill());
                 Holder.getController().setModel(model);
                 Util.writeMessage("Коллекция успешно создана");
