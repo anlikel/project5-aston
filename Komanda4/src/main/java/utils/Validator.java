@@ -2,6 +2,8 @@ package utils;
 
 public class Validator {
 
+    private Validator() {}
+
     public static boolean isValidNameOrTitle(String name) {
         return name != null && !name.trim().isEmpty() && name.matches("[A-Za-zА-Яа-яs]+");
     }
