@@ -21,6 +21,7 @@ import java.util.List;
 public class FindMenuHandler {
     public static void mainFindMenuHandler(String choose) throws ReadWriteException {
         Controller controller=Holder.getController();
+        List list=controller.getModel().getList();
         switch(choose){
             case "0":
                 CommandFactory.getCommand(Action.EXIT).execute();
@@ -31,7 +32,7 @@ public class FindMenuHandler {
                     throw new ReadWriteException("Исключение: элемен в модели отсутствует");
                 }
                 try {
-                    FindCountElements.find(elementList.get(0));
+                    FindCountElements.find(list,elementList.get(0));
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -47,7 +48,7 @@ public class FindMenuHandler {
                 List element = filling.manualFill(1);
                 Util.writeMessage(String.format("элемент %s успешно создан", element.get(0)));
                 try {
-                    FindCountElements.find(element.get(0));
+                    FindCountElements.find(list,element.get(0));
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
