@@ -30,18 +30,19 @@ public class FlightFilling implements Filling<Flight> {
 
         for (int i = 0; i < size; i++) {
             Util.writeMessage("input flight name");
-            nameFlight = Util.readMessage();
+            nameFlight = Util.readName();
 
             Util.writeMessage("input date flight: dd.MM.yyyy HH:mm");
-            String text = Util.readMessage();
+            String date1 = Util.readDate();
             try {
-                date = LocalDateTime.parse(text, formatter);
+                date = LocalDateTime.parse(date1, formatter);
             } catch (DateTimeParseException e) {
                 throw new ReadWriteException("Ошибка чтения даты: " + e.getMessage());
             }
 
             Util.writeMessage("input flight price");
-            price = Double.parseDouble(Util.readMessage());
+            String price1=Util.readPrice();
+            price=Double.parseDouble(price1);
 
             Flight flight = new Flight.FlightBuilder()
                     .setNameFlight(nameFlight)
