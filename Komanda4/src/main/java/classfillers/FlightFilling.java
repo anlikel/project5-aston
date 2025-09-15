@@ -22,7 +22,6 @@ public class FlightFilling implements Filling<Flight> {
     private String nameFlight;
     private LocalDateTime date;
     private double price;
-    private int multiple = 3;
 
     @Override
     public List<Flight> manualFill(int size) throws ReadWriteException {

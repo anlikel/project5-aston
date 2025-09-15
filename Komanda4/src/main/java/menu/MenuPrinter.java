@@ -12,6 +12,8 @@ public class MenuPrinter {
         Util.writeMessage("3-Бинарный поиск по коллекции");
         Util.writeMessage("4-Записать коллекцию в файл");
         Util.writeMessage("5-Распечать коллекцию на экран");
+        Util.writeMessage("6-Поиск количества совпадающих объектов в коллекции");
+        Util.writeMessage("7-Создать отдельный элемент для поиска по коллекции");
         String choose = Util.readMessage();
         MenuHandler.mainMenuHandler(choose);
     }

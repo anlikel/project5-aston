@@ -36,6 +36,12 @@ public class MenuHandler {
             case "5":
                 CommandFactory.getCommand(Action.DISPLAY).execute();
                 break;
+            case "6":
+                CommandFactory.getCommand(Action.FIND).execute();
+                break;
+            case "7":
+                CommandFactory.getCommand(Action.CREATE_ELEMENT).execute();
+                break;
             default:
                 MenuPrinter.mainMenu();
         }

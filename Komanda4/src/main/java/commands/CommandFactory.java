@@ -23,7 +23,6 @@ public class CommandFactory {
         map.put(Action.DISPLAY,new DisplayCommand());
         map.put(Action.READ,new ReadCommand());
         map.put(Action.FIND, new FindComand());
+        map.put(Action.CREATE_ELEMENT, new CreateElementCommand());
     }
-
-
 }

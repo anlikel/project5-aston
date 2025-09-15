@@ -1,18 +1,18 @@
 package commands;
 
-import classes.Product;
-import classes.User;
+import classfillers.Filling;
+import classfillers.FillingFactory;
 import controller.Controller;
 import enums.ClassTags;
 import exceptions.ReadWriteException;
-import menu.FindMenuPrinter;
 import model.Model;
-import multiFind.FindCountElements;
 import utils.Holder;
+import utils.Util;
 
+import javax.swing.*;
 import java.util.List;
 
-public class FindComand  implements Command{
+public class CreateElementCommand implements Command{
     @Override
     public void execute() throws ReadWriteException {
         Controller controller= Holder.getController();
@@ -20,6 +20,11 @@ public class FindComand  implements Command{
         if(model==null){
             throw new ReadWriteException("Исключение: Сначала необходимо создать коллекцию для поиска");
         }
-        FindMenuPrinter.mainFindMenu();
+        ClassTags tag=model.getTag();
+            Filling filling = FillingFactory.getFiller(tag);
+            List element = filling.manualFill(1);
+            model.setElementList(element);
+            controller.setModel(model);
+            Util.writeMessage(String.format("элемент %s успешно создан", element.get(0)));
     }
 }

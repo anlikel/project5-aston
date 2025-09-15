@@ -10,7 +10,7 @@ public class Main
                 try {
                     program.start();
                 } catch (ReadWriteException e) {
-                    Util.writeMessage(e.toString());
+                    Util.writeMessage(e.getMessage().toString());
                     program.start();
                 }
             }

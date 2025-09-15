@@ -17,7 +17,6 @@ public class UserFilling implements Filling<User> {
     private String name;
     private int age;
     private String email;
-    int fieldCount=3;
 
     @Override
     public List<User> manualFill(int size) throws ReadWriteException {

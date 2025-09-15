@@ -18,7 +18,6 @@ public class ProductFilling implements Filling<Product> {
     private String title;
     private double price;
     private int quantity;
-    int fieldCount=3;
 
     @Override
     public List<Product> manualFill(int size) throws ReadWriteException {
