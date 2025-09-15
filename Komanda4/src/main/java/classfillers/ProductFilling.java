@@ -24,11 +24,13 @@ public class ProductFilling implements Filling<Product> {
         List<Product>products=new MyArrayListImpl<>();
         for (int i=0;i<size;i++) {
             Util.writeMessage("input product title");
-            title= Util.readMessage();
+            title= Util.readTitle();
             Util.writeMessage("input product price");
-            price=Double.parseDouble(Util.readMessage());
+            String price1=Util.readPrice();
+            price=Double.parseDouble(price1);
             Util.writeMessage("input product quantity");
-            quantity=Integer.parseInt(Util.readMessage());
+            String quantity1=Util.readQuantity();
+            quantity=Integer.parseInt(quantity1);
             Product product=new Product.ProductBuilder()
                     .setTitle(title)
                     .setPrice(price)

@@ -12,7 +12,7 @@ public class Validator {
     public static boolean isValidName(String fullName) {
         if (fullName == null || fullName.trim().isEmpty()) { return false; }
 
-        String regex = "^[A-ZА-Я][a-zа-я]*(?:-[A-ZА-Я][a-zа-я]*)*$";
+        String regex = "^[A-ZА-Я][A-ZА-Яa-zа-я0-9\\-\\s]*$";
         String[] names = fullName.trim().split(" ");
 
         for (String name : names) {
@@ -40,7 +40,7 @@ public class Validator {
         return email.matches(emailRegex);
     }
 
-    public static boolean isValidPrise(String prise) {
+    public static boolean isValidPrice(String prise) {
         if (prise == null || prise.trim().isEmpty()) { return false; }
 
         try {
@@ -63,14 +63,14 @@ public class Validator {
     }
 
     public static boolean isValidTitle(String title) {
-        return title != null && !title.trim().isEmpty() && title.matches("[A-Za-zА-Яа-я\\-\\s]+");
+        return title != null && !title.trim().isEmpty() && title.matches("[A-ZА-Яa-zа-я0-9\\-\\s]*$");
     }
 
     public static boolean isValidDate(String date) {
-        return isValidDate(date, "dd.MM.yyyy HH:mm");
+        return simpleValidDate(date, "dd.MM.yyyy HH:mm");
     }
 
-    public static boolean isValidDate(String date, String pattern) {
+    private static boolean simpleValidDate(String date, String pattern) {
         if (date == null || date.trim().isEmpty()) { return false; }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
@@ -85,7 +85,7 @@ public class Validator {
 
     public static boolean isValidCity(String city) {
         if (city == null || city.trim().isEmpty()) { return false; }
-        return city.matches("^[A-ZА-Я][A-ZА-Яa-zа-я\\-\\s]*$");
+        return city.matches("^[A-ZА-Я][A-ZА-Яa-zа-я0-9\\-\\s]*$");
     }
 
     public static boolean isValidRating(String rating) {

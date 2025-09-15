@@ -23,13 +23,14 @@ public class HotelFilling implements Filling<Hotel> {
         List<Hotel> hotels = new MyArrayListImpl<>();
         for (int i = 0; i < size; i++) {
             Util.writeMessage("input hotel name");
-            name = Util.readMessage();
+            name = Util.readName();
 
             Util.writeMessage("input hotel city");
-            city = Util.readMessage();
+            city = Util.readCity();
 
             Util.writeMessage("input hotel rating");
-            rating = Double.parseDouble(Util.readMessage());
+            String rating1=Util.readRating();
+            rating = Double.parseDouble(rating1);
 
             Hotel hotel = new Hotel.HotelBuilder()
                     .setName(name)

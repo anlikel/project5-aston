@@ -23,11 +23,12 @@ public class UserFilling implements Filling<User> {
         List<User>users=new MyArrayListImpl<>();
         for (int i=0;i<size;i++) {
             Util.writeMessage("input user name");
-            name = Util.readMessage();
+            name = Util.readName();
             Util.writeMessage("input user age");
-            age = Integer.parseInt(Util.readMessage());
+            String age1=Util.readAge();
+            age = Integer.parseInt(age1);
             Util.writeMessage("input user email");
-            email = Util.readMessage();
+            email = Util.readEmail();
             User user = new User.UserBuilder()
                     .setName(name)
                     .setAge(age)
