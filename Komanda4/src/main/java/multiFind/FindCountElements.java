@@ -25,15 +25,15 @@ public class FindCountElements<T> {
 
 
 
-    public static <T> void find(T element) throws InterruptedException {
+    public static <T> void find(List<T> listElements , T element) throws InterruptedException {
         int countThread = Runtime.getRuntime().availableProcessors();
         AtomicInteger countElement = new AtomicInteger(0);
-        List listElements;
-        if(Holder.getController()!=null && Holder.getController().getModel().getList() != null) {
-            listElements = Holder.getController().getModel().getList();
-        } else {
-            listElements = null;
-        }
+//        List listElements;
+//        if(Holder.getController()!=null && Holder.getController().getModel().getList() != null) {
+//            listElements = Holder.getController().getModel().getList();
+//        } else {
+//            listElements = null;
+//        }
 
         int start = 0;
         int size = 0;
