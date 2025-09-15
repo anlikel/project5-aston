@@ -34,7 +34,6 @@ public class FindCountElements<T> {
 //        } else {
 //            listElements = null;
 //        }
-
         int start = 0;
         int size = 0;
 
