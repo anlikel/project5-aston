@@ -2,6 +2,8 @@ package multiFind;
 import model.Model;
 import utils.Holder;
 import utils.Util;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -26,15 +28,24 @@ public class FindCountElements<T> {
     public static <T> void find(T element) throws InterruptedException {
         int countThread = Runtime.getRuntime().availableProcessors();
         AtomicInteger countElement = new AtomicInteger(0);
-        List listElements = Holder.getController().getModel().getList();
+        List listElements;
+        if(Holder.getController()!=null && Holder.getController().getModel().getList() != null) {
+            listElements = Holder.getController().getModel().getList();
+        } else {
+            listElements = null;
+        }
 
         int start = 0;
         int size = 0;
+
         if(listElements != null) {
              size = listElements.size();
         }
-
-        if(size == 0){
+        if (element == null){
+            Util.writeMessage("Элемент содержит null");
+            return;
+        }
+        if(size == 0 || listElements == null){
             Util.writeMessage("Коллекция пуста");
             return;
         }

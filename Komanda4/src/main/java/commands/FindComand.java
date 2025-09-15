@@ -1,6 +1,7 @@
 package commands;
 
 import classes.Product;
+import classes.User;
 import enums.ClassTags;
 import exceptions.ReadWriteException;
 import model.Model;
@@ -11,9 +12,9 @@ public class FindComand  implements Command{
     @Override
     public void execute() throws ReadWriteException {
         //Логика для получения элемента
-        var el = Holder.getController().getModel().getTag();
-        var element= new <Object>Model(el);//заглушка
 
+        // var el = Holder.getController().getModel().getTag();
+        User element= null;//заглушка
 
         try {
             FindCountElements.find(element);
