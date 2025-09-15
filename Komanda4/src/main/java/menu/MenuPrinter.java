@@ -24,6 +24,7 @@ public class MenuPrinter {
             Util.writeMessage("1-User");
             Util.writeMessage("2-Product");
             Util.writeMessage("3-Flight");
+            Util.writeMessage("4-Hotel");
             choose = Util.readMessage();
             MenuHandler.classMenuHandler(choose);
         } catch (ReadWriteException e) {
