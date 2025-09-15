@@ -22,12 +22,12 @@ public class UserFilling implements Filling<User> {
     public List<User> manualFill(int size) throws ReadWriteException {
         List<User>users=new MyArrayListImpl<>();
         for (int i=0;i<size;i++) {
-            Util.writeMessage("input user name");
+            Util.writeMessage("input user name or exit");
             name = Util.readName();
-            Util.writeMessage("input user age");
+            Util.writeMessage("input user age or exit");
             String age1=Util.readAge();
             age = Integer.parseInt(age1);
-            Util.writeMessage("input user email");
+            Util.writeMessage("input user email or exit");
             email = Util.readEmail();
             User user = new User.UserBuilder()
                     .setName(name)

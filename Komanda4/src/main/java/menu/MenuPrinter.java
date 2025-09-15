@@ -45,7 +45,7 @@ public class MenuPrinter {
             choose = Util.readMessage();
             MenuHandler.fillMenuHandler(choose);
         } catch (ReadWriteException e) {
-            Util.writeMessage(e.toString());
+            Util.writeMessage(e.getMessage().toString());
             MenuPrinter.fillMenu();
         }
     }

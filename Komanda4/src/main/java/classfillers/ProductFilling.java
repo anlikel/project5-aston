@@ -23,12 +23,12 @@ public class ProductFilling implements Filling<Product> {
     public List<Product> manualFill(int size) throws ReadWriteException {
         List<Product>products=new MyArrayListImpl<>();
         for (int i=0;i<size;i++) {
-            Util.writeMessage("input product title");
+            Util.writeMessage("input product title or exit");
             title= Util.readTitle();
-            Util.writeMessage("input product price");
+            Util.writeMessage("input product price or exit");
             String price1=Util.readPrice();
             price=Double.parseDouble(price1);
-            Util.writeMessage("input product quantity");
+            Util.writeMessage("input product quantity or exit");
             String quantity1=Util.readQuantity();
             quantity=Integer.parseInt(quantity1);
             Product product=new Product.ProductBuilder()
