@@ -52,8 +52,6 @@ public class FileObjectSave {
         }
     }
 
-
-
     private static List getListFromModel(){
         return Holder.getController().getModel().getList();
     }

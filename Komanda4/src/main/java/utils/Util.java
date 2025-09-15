@@ -37,6 +37,9 @@ public class Util {
             case FLIGHT:
                 filename=Holder.flightsFile;
                 break;
+            case HOTEL:
+                filename=Holder.hotelsFile;
+                break;
         }
         return filename;
     }

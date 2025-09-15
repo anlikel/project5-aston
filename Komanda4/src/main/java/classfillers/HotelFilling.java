@@ -4,6 +4,7 @@ import classes.Hotel;
 import classes.User;
 import commands.Command;
 import commands.CommandFactory;
+import commands.ReadCommand;
 import enums.Action;
 import exceptions.ReadWriteException;
 import utils.MyArrayListImpl;
@@ -48,7 +49,7 @@ public class HotelFilling implements Filling<Hotel> {
         for (int i = 0; i < size; i++) {
             Hotel hotel = new Hotel.HotelBuilder()
                     .setName("Hotel" + random.nextInt(1000))
-                    .setCity("Hotel" + random.nextInt(1000))
+                    .setCity("City" + random.nextInt(1000))
                     .setRaiting(random.nextDouble(5))
                     .build();
             hotels.add(hotel);

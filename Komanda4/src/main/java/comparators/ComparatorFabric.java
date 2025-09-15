@@ -20,5 +20,6 @@ public class ComparatorFabric {
         map.put(ClassTags.PRODUCT,new ProductComparator());
         map.put(ClassTags.USER,new UserComparator());
         map.put(ClassTags.FLIGHT,new FlightComparator());
+        map.put(ClassTags.HOTEL,new HotelComparator());
     }
 }

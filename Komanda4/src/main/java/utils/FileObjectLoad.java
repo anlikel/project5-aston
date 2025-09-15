@@ -1,6 +1,7 @@
 package utils;
 
 import classes.Flight;
+import classes.Hotel;
 import classes.Product;
 import classes.User;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -82,6 +83,27 @@ public final class FileObjectLoad {
         }
     }
 
+    public static List<Hotel> loadHotelsromJsonFile(String file) throws ReadWriteException {
+        try {
+
+            if (!Files.exists(Path.of(file))) {
+                throw new ReadWriteException("Исключение: файл не существует - " + file);
+            }
+
+            if (Files.size(Path.of(file))==0) {
+                return List.of();
+            }
+
+            return objectMapper.readValue(
+                    new File(file),
+                    new TypeReference<List<Hotel>>() {}
+            );
+
+        } catch (IOException e) {
+            throw new ReadWriteException("Исключение: ошибка чтения JSON файла " + file + ": " + e.getMessage());
+        }
+    }
+
     public static List getFileList(String file) throws ReadWriteException {
         List list=null;
         ClassTags tag=Holder.getController().getModel().getTag();
@@ -94,6 +116,9 @@ public final class FileObjectLoad {
                 break;
             case FLIGHT:
                 list=loadFlightFromJsonFile(file);
+                break;
+            case HOTEL:
+                list=loadHotelsromJsonFile(file);
                 break;
         }
         return list;

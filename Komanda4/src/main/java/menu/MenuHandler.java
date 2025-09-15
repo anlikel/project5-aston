@@ -1,6 +1,7 @@
 package menu;
 
 import classes.Flight;
+import classes.Hotel;
 import classes.Product;
 import classes.User;
 import classfillers.Filling;
@@ -56,6 +57,10 @@ public class MenuHandler {
                 break;
             case "3":
                 controller.setModel(new <Flight>Model(ClassTags.FLIGHT));
+                MenuPrinter.fillMenu();
+                break;
+            case "4":
+                controller.setModel(new <Hotel>Model(ClassTags.HOTEL));
                 MenuPrinter.fillMenu();
                 break;
             default:
