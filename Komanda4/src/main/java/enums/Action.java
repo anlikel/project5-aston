@@ -8,5 +8,6 @@ public enum Action {
     WRITE,
     DISPLAY,
     READ,
-    FIND
+    FIND,
+    CREATE_ELEMENT
 }

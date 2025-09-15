@@ -17,7 +17,6 @@ public class HotelFilling implements Filling<Hotel> {
     private String name;
     private String city;
     private double rating;
-    private int fieldCount = 3;
 
     @Override
     public List<Hotel> manualFill(int size) throws ReadWriteException {
