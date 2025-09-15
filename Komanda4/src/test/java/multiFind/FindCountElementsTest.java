@@ -79,17 +79,16 @@ public class FindCountElementsTest {
         assertTrue(result.contains("Количество вхождения элемента в коллекцию - 1"));
     }
 
-
     @Test
     @DisplayName("Тест на список содержащий 50 элементов")
     public void testFindListFiftyElement(){
-        User user1 = new User.UserBuilder().setName("1").setAge(1).setEmail("1").build();
+        User userOne = new User.UserBuilder().setName("1").setAge(1).setEmail("1").build();
         List<User> userList = new ArrayList<>();
         for (int i = 0; i < 50; i++){
-            userList.add(user1);
+            userList.add(userOne);
         }
         try {
-            FindCountElements.find(userList,user1);
+            FindCountElements.find(userList,userOne);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
