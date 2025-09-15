@@ -46,141 +46,150 @@ public class Util {
 
     //ридеры для полей классов
 
-    public static String readName() {
+    public static String readName() throws ReadWriteException{
         while (true) {
             try {
                 String name = bufferedReader.readLine();
+                if(name.equals("exit")){throw new ReadWriteException("вышли в предыдущее меню");}
                 if (Validator.isValidName(name)) {
                     return name;
                 } else {
-                    throw new ReadWriteException("некорректное имя");
+                    throw new IOException("некорректное имя");
                 }
-            } catch (IOException | ReadWriteException e) {
+            } catch (IOException e) {
                 Util.writeMessage("исключение: неправильный ввод данных повторите");
                 Util.writeMessage("Имя с большой буквы");
             }
         }
     }
 
-    public static String readCity() {
+    public static String readCity() throws ReadWriteException{
         while (true) {
             try {
                 String city = bufferedReader.readLine();
+                if(city.equals("exit")){throw new ReadWriteException("вышли в предыдущее меню");}
                 if (Validator.isValidCity(city)) {
                     return city;
                 } else {
-                    throw new ReadWriteException("некорректное название города");
+                    throw new IOException("некорректное название города");
                 }
-            } catch (IOException | ReadWriteException e) {
+            } catch (IOException e) {
                 Util.writeMessage("исключение: неправильный ввод данных повторите");
                 Util.writeMessage("Город с большой буквы");
             }
         }
     }
 
-    public static String readTitle() {
+    public static String readTitle() throws ReadWriteException{
         while (true) {
             try {
                 String title = bufferedReader.readLine();
+                if(title.equals("exit")){throw new ReadWriteException("вышли в предыдущее меню");}
                 if (Validator.isValidTitle(title)) {
                     return title;
                 } else {
-                    throw new ReadWriteException("некорректное название");
+                    throw new IOException("некорректное название");
                 }
-            } catch (IOException | ReadWriteException e) {
+            } catch (IOException e) {
                 Util.writeMessage("исключение: неправильный ввод данных повторите");
             }
         }
     }
 
-    public static String readDate() {
+    public static String readDate() throws ReadWriteException{
         while (true) {
             try {
                 String date = bufferedReader.readLine();
+                if(date.equals("exit")){throw new ReadWriteException("вышли в предыдущее меню");}
                 if (Validator.isValidDate(date)) {
                     return date;
                 } else {
-                    throw new ReadWriteException("некорректная дата");
+                    throw new IOException("некорректная дата");
                 }
-            } catch (IOException | ReadWriteException e) {
+            } catch (IOException e) {
                 Util.writeMessage("исключение: неправильный ввод данных повторите");
                 Util.writeMessage("дата в формате dd.MM.yyyy HH:mm");
             }
         }
     }
 
-    public static String readEmail() {
+    public static String readEmail() throws ReadWriteException{
         while (true) {
             try {
                 String eml = bufferedReader.readLine();
+                if(eml.equals("exit")){throw new ReadWriteException("вышли в предыдущее меню");}
                 if (Validator.isValidEmail(eml)) {
                     return eml;
                 } else {
-                    throw new ReadWriteException("некорректная почта");
+                    throw new IOException("некорректная почта");
                 }
-            } catch (IOException | ReadWriteException e) {
+            } catch (IOException e) {
                 Util.writeMessage("исключение: неправильный ввод данных повторите");
             }
         }
     }
 
-    public static String readAge() {
+    public static String readAge() throws ReadWriteException{
         while (true) {
             try {
                 String age = bufferedReader.readLine();
+                if(age.equals("exit")){throw new ReadWriteException("вышли в предыдущее меню");}
                 if (Validator.isValidAge(age)) {
                     return age;
                 } else {
-                    throw new ReadWriteException("некорректный возраст");
+                    throw new IOException("некорректный возраст");
                 }
-            } catch (IOException | ReadWriteException e) {
+            } catch (IOException e) {
                 Util.writeMessage("исключение: неправильный ввод данных повторите");
                 Util.writeMessage("возраст от 0 до 100");
             }
         }
     }
 
-    public static String readQuantity() {
+    public static String readQuantity() throws ReadWriteException{
         while (true) {
             try {
                 String q = bufferedReader.readLine();
+                if(q.equals("exit")){throw new ReadWriteException("вышли в предыдущее меню");}
                 if (Validator.isValidQuantity(q)) {
                     return q;
                 } else {
-                    throw new ReadWriteException("некорректное число");
+                    throw new IOException("некорректное число");
                 }
-            } catch (IOException | ReadWriteException e) {
+            } catch (IOException  e) {
                 Util.writeMessage("исключение: неправильный ввод данных повторите");
             }
         }
     }
 
-    public static String readPrice() {
+    public static String readPrice() throws ReadWriteException{
         while (true) {
             try {
                 String p = bufferedReader.readLine();
+                if(p.equals("exit")){throw new ReadWriteException("вышли в предыдущее меню");}
                 if (Validator.isValidPrice(p)) {
                     return p;
                 } else {
-                    throw new ReadWriteException("некорректное число");
+                    throw new IOException("некорректное число");
                 }
-            } catch (IOException | ReadWriteException e) {
+            } catch (IOException e) {
                 Util.writeMessage("исключение: неправильный ввод данных повторите");
                 Util.writeMessage("нужно дробное число");
             }
         }
     }
 
-    public static String readRating() {
+    public static String readRating() throws ReadWriteException{
         while (true) {
             try {
                 String r = bufferedReader.readLine();
+                if(r.equals("exit")){throw new ReadWriteException("вышли в предыдущее меню");}
                 if (Validator.isValidRating(r)) {
                     return r;
                 } else {
-                    throw new ReadWriteException("некорректное число");
+                    throw new IOException("некорректное число");
                 }
-            } catch (IOException | ReadWriteException e) {
+            } catch (IOException  e) {
                 Util.writeMessage("исключение: неправильный ввод данных повторите");
                 Util.writeMessage("нужно дробное число от 0 до 5");
             }

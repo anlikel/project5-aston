@@ -29,10 +29,10 @@ public class FlightFilling implements Filling<Flight> {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
         for (int i = 0; i < size; i++) {
-            Util.writeMessage("input flight name");
+            Util.writeMessage("input flight name or exit");
             nameFlight = Util.readName();
 
-            Util.writeMessage("input date flight: dd.MM.yyyy HH:mm");
+            Util.writeMessage("input date flight: dd.MM.yyyy HH:mm or exit");
             String text = Util.readDate();
             try {
                 date = LocalDateTime.parse(text, formatter);
@@ -40,7 +40,7 @@ public class FlightFilling implements Filling<Flight> {
                 throw new ReadWriteException("Ошибка чтения даты: " + e.getMessage());
             }
 
-            Util.writeMessage("input flight price");
+            Util.writeMessage("input flight price or exit");
             String price1=Util.readPrice();
             price = Double.parseDouble(price1);
 

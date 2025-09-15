@@ -22,13 +22,13 @@ public class HotelFilling implements Filling<Hotel> {
     public List<Hotel> manualFill(int size) throws ReadWriteException {
         List<Hotel> hotels = new MyArrayListImpl<>();
         for (int i = 0; i < size; i++) {
-            Util.writeMessage("input hotel name");
+            Util.writeMessage("input hotel name or exit");
             name = Util.readName();
 
-            Util.writeMessage("input hotel city");
+            Util.writeMessage("input hotel city or exit");
             city = Util.readCity();
 
-            Util.writeMessage("input hotel rating");
+            Util.writeMessage("input hotel rating or exit");
             String rating1=Util.readRating();
             rating = Double.parseDouble(rating1);
 
