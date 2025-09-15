@@ -6,6 +6,8 @@ import commands.CommandFactory;
 import commands.ReadCommand;
 import enums.Action;
 import exceptions.ReadWriteException;
+import utils.FileObjectLoad;
+import utils.Holder;
 import utils.MyArrayListImpl;
 import utils.Util;
 import java.util.ArrayList;
@@ -27,8 +29,8 @@ public class ProductFilling implements Filling<Product> {
             String price1=Util.readPrice();
             price=Double.parseDouble(price1);
             Util.writeMessage("input product quantity");
-            String q=Util.readQuantity();
-            quantity=Integer.parseInt(q);
+            String quantity1=Util.readQuantity();
+            quantity=Integer.parseInt(quantity1);
             Product product=new Product.ProductBuilder()
                     .setTitle(title)
                     .setPrice(price)
