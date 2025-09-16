@@ -7,6 +7,7 @@ import commands.CommandFactory;
 import commands.ReadCommand;
 import enums.Action;
 import exceptions.ReadWriteException;
+import utils.Holder;
 import utils.MyArrayListImpl;
 import utils.Util;
 
@@ -107,7 +108,6 @@ public class HotelFilling implements Filling<Hotel> {
     public List<Hotel> autoFill() throws ReadWriteException {
         Command command= CommandFactory.getCommand(Action.READ);
         command.execute();
-        ReadCommand readCommand=(ReadCommand) command;
-        return readCommand.getList();
+        return Holder.getController().getTempList();
     }
 }

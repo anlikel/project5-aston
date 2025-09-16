@@ -35,8 +35,7 @@ public class FileObjectSave {
         try {
             Command command= CommandFactory.getCommand(Action.READ);
             command.execute();
-            ReadCommand readCommand=(ReadCommand)command;
-            List list1=readCommand.getList();
+            List list1=Holder.getController().getTempList();
             list1.addAll(list);
             objectMapper.writeValue(new File(fileName), list1);
 

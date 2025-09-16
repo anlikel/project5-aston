@@ -106,7 +106,7 @@ public final class FileObjectLoad {
 
     public static List getFileList(String file) throws ReadWriteException {
         List list=null;
-        ClassTags tag=Holder.getController().getModel().getTag();
+        ClassTags tag=Holder.getController().getTag();
         switch (tag){
             case PRODUCT:
                 list=loadProductsFromJsonFile(file);

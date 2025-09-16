@@ -14,7 +14,7 @@ import utils.*;
 import java.util.List;
 
 public class ReadWriteMenuHandler {
-    public static List mainReadMenuHandler(String choose) throws ReadWriteException {
+    public static void mainReadMenuHandler(String choose) throws ReadWriteException {
         List list=null;
         switch(choose){
             case "0":
@@ -34,7 +34,7 @@ public class ReadWriteMenuHandler {
                 Util.writeMessage("некорректный выбор пункта меню");
                 ReadWriteMenuPrinter.mainReadMenu();
         }
-        return list;
+        Holder.getController().setTempList(list);
     }
 
     public static void mainWriteMenuHandler(String choose,List list) throws ReadWriteException {
