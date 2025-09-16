@@ -5,17 +5,24 @@ import utils.Util;
 
 public class MenuPrinter {
 
-    public static void mainMenu() throws ReadWriteException {
-        Util.writeMessage("0-Выход");
-        Util.writeMessage("1-Создать коллекцию");
-        Util.writeMessage("2-Сортировать коллекцию");
-        Util.writeMessage("3-Бинарный поиск по коллекции");
-        Util.writeMessage("4-Записать коллекцию в файл");
-        Util.writeMessage("5-Печать");
-        Util.writeMessage("6-Поиск количества совпадающих объектов в коллекции");
-        Util.writeMessage("7-Создать отдельный элемент для поиска по коллекции");
-        String choose = Util.readMessage();
-        MenuHandler.mainMenuHandler(choose);
+    public static void mainMenu()  {
+        String choose;
+        try {
+            Util.writeMessage("0-Выход");
+            Util.writeMessage("1-Создать коллекцию");
+            Util.writeMessage("2-Сортировать коллекцию");
+            Util.writeMessage("3-Бинарный поиск по коллекции");
+            Util.writeMessage("4-Запись в файл");
+            Util.writeMessage("5-Печать");
+            Util.writeMessage("6-Поиск количества совпадающих объектов в коллекции");
+            Util.writeMessage("7-Создать отдельный элемент для поиска по коллекции");
+            choose = Util.readMessage();
+            MenuHandler.mainMenuHandler(choose);
+        }
+        catch(ReadWriteException e){
+            Util.writeMessage(e.getMessage().toString());
+            MenuPrinter.mainMenu();
+        }
     }
 
     public static void classMenu() {

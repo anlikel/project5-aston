@@ -1,8 +1,11 @@
 package utils;
 
+import exceptions.ReadWriteException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 
 public class Validator {
 
@@ -98,6 +101,12 @@ public class Validator {
         }
 
         return ratingDouble <= 5 && ratingDouble >= 0;
+    }
+
+    public static void checkList(List list) throws ReadWriteException {
+        if(list==null || list.isEmpty()){
+            throw new ReadWriteException("исключение: объект для записи не существует");
+        }
     }
 }
 
