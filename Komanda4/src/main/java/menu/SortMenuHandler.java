@@ -20,22 +20,19 @@ import java.util.List;
 public class SortMenuHandler {
     public static void mainSortMenuHandler(String choose) throws ReadWriteException {
         Controller controller= Holder.getController();
-        Model model= controller.getModel();
-        List list=model.getList();
+        List list=controller.getList();
         switch(choose){
             case "1":
                 list.sort(null);
-                model.setList(list);
-                controller.setModel(model);
+                controller.setList(list);
                 break;
             case "2":
-                ClassTags tag=model.getTag();
+                ClassTags tag=controller.getTag();
                 Comparator comp= ComparatorFabric.getComparator(tag);
                 Filter f=(Filter)comp;
                 f.setFilter();
                 list.sort((Comparator)f);
-                model.setList(list);
-                controller.setModel(model);
+                controller.setList(list);
                 break;
             case "3":
                 CommandFactory.getCommand(Action.EXIT).execute();
@@ -47,13 +44,12 @@ public class SortMenuHandler {
 
     public static void binarySearchMenuHandler(String choose) throws ReadWriteException {
         Controller controller= Holder.getController();
-        Model model= controller.getModel();
-        List list=model.getList();
+        List list=controller.getList();
         Util.writeMessage("********************************************");
         Util.writeMessage("*******несортированный список объектов******");
         list.forEach(System.out::println);
         Util.writeMessage("********************************************");
-        ClassTags tag=model.getTag();
+        ClassTags tag=controller.getTag();
         int index=-1;
         switch(choose){
             case "1":

@@ -7,6 +7,8 @@ import java.util.List;
 public class Model<T> {
     private List<T> list;
     private List<T> elementList;
+    private List<T> foundedList;
+
     private ClassTags tag;
 
     public <T>Model(ClassTags tag){
@@ -31,6 +33,14 @@ public class Model<T> {
 
     public void setElementList(List<T> elementList) {
         this.elementList = elementList;
+    }
+
+    public List<T> getFoundedList() {
+        return foundedList;
+    }
+
+    public void setFoundedList(List<T> foundedList) {
+        this.foundedList = foundedList;
     }
 
     public void setTag(ClassTags tag) {

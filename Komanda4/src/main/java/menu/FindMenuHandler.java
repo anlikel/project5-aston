@@ -21,13 +21,13 @@ import java.util.List;
 public class FindMenuHandler {
     public static void mainFindMenuHandler(String choose) throws ReadWriteException {
         Controller controller=Holder.getController();
-        List list=controller.getModel().getList();
+        List list=controller.getList();
         switch(choose){
             case "0":
                 CommandFactory.getCommand(Action.EXIT).execute();
                 break;
             case "1":
-                List elementList=controller.getModel().getElementList();
+                List elementList=controller.getElementList();
                 if(elementList==null){
                     throw new ReadWriteException("Исключение: элемен в модели отсутствует");
                 }
@@ -38,12 +38,11 @@ public class FindMenuHandler {
                 }
                 break;
             case "2":
-                controller= Holder.getController();
                 Model model=controller.getModel();
                 if(model==null){
                     throw new ReadWriteException("Исключение: Сначала необходимо создать коллекцию для поиска");
                 }
-                ClassTags tag=model.getTag();
+                ClassTags tag=controller.getTag();
                 Filling filling = FillingFactory.getFiller(tag);
                 List element = filling.manualFill(1);
                 Util.writeMessage(String.format("элемент %s успешно создан", element.get(0)));
