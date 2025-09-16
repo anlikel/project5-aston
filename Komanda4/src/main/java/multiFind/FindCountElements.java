@@ -1,9 +1,12 @@
 package multiFind;
+import controller.Controller;
+import exceptions.ReadWriteException;
 import model.Model;
 import utils.Holder;
 import utils.Util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -22,18 +25,15 @@ public class FindCountElements<T> {
 //        this.element = element;
 //        this.countElement = new AtomicInteger(0);
 //    }
-
+    private static List findElement = new ArrayList<>();
 
 
     public static <T> void find(List<T> listElements , T element) throws InterruptedException {
+
         int countThread = Runtime.getRuntime().availableProcessors();
         AtomicInteger countElement = new AtomicInteger(0);
-//        List listElements;
-//        if(Holder.getController()!=null && Holder.getController().getModel().getList() != null) {
-//            listElements = Holder.getController().getModel().getList();
-//        } else {
-//            listElements = null;
-//        }
+
+
         int start = 0;
         int size = 0;
 
@@ -80,12 +80,19 @@ public class FindCountElements<T> {
         }
         latch.await();
         Util.writeMessage("Количество вхождения элемента в коллекцию - " + countElement);
+        if(Holder.getController()!=null) {
+            Controller controller = Holder.getController();
+            controller.setFoundedList(findElement);
+        }
     }
 
-    private static<T> void forCaunt(List listElements,T element, int start, int fin, AtomicInteger countElement){
+    private static<T> void forCaunt(List<T> listElements,T element, int start, int fin, AtomicInteger countElement){
         for(int i = start; i < fin; i++){
             if(listElements.get(i).equals(element)){
                     countElement.incrementAndGet();
+                    synchronized (findElement){
+                        findElement.add(listElements.get(i));
+                    }
             }
         }
     }
