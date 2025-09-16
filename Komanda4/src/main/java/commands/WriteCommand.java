@@ -5,11 +5,9 @@ import menu.ReadWriteMenuHandler;
 import menu.ReadWriteMenuPrinter;
 import utils.Util;
 
-public class WriteCommand implements commands.Command {
+public class WriteCommand implements Command {
     @Override
-    public void execute() throws ReadWriteException {
-        ReadWriteMenuPrinter.mainWriteMenu();
-        String choose= Util.readMessage();
-        ReadWriteMenuHandler.mainWriteMenuHandler(choose);
+    public void execute() {
+        ReadWriteMenuPrinter.objectWriteMenu();
     }
 }

@@ -19,9 +19,8 @@ public class FileObjectSave {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
     }
 
-    public static void saveListToFile(String fileName) {
+    public static void saveListToFile(String fileName,List list) {
         try {
-            List list = getListFromModel();
             objectMapper.writeValue(new File(fileName), list);
 
             System.out.println("Данные успешно сохранены в файл: " + fileName);
@@ -32,14 +31,13 @@ public class FileObjectSave {
         }
     }
 
-    public static void saveListToFileWithAppend(String fileName) {
+    public static void saveListToFileWithAppend(String fileName,List list) {
         try {
             Command command= CommandFactory.getCommand(Action.READ);
             command.execute();
             ReadCommand readCommand=(ReadCommand)command;
             List list1=readCommand.getList();
-            List list2 = getListFromModel();
-            list1.addAll(list2);
+            list1.addAll(list);
             objectMapper.writeValue(new File(fileName), list1);
 
             System.out.println("Данные успешно сохранены в файл: " + fileName);
@@ -50,9 +48,5 @@ public class FileObjectSave {
         } catch (ReadWriteException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private static List getListFromModel(){
-        return Holder.getController().getList();
     }
 }
