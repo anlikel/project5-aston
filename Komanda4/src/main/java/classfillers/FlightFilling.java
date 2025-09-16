@@ -138,7 +138,6 @@ public class FlightFilling implements Filling<Flight> {
     public List<Flight> autoFill() throws ReadWriteException {
         Command command= CommandFactory.getCommand(Action.READ);
         command.execute();
-        ReadCommand readCommand=(ReadCommand) command;
-        return readCommand.getList();
+        return Holder.getController().getTempList();
     }
 }

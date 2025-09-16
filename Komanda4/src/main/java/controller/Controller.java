@@ -42,6 +42,16 @@ public class Controller {
         return model != null ? model.getFoundedList() : null;
     }
 
+    public List getTempList() {
+        return model != null ? model.getTempList() : null;
+    }
+
+    public void setTempList(List tempList) {
+        if (model != null) {
+            model.setTempList(tempList);
+        }
+    }
+
     public void setFoundedList(List foundedList) {
         if (model != null) {
             model.setFoundedList(foundedList);

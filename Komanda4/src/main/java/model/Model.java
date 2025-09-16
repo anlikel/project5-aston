@@ -8,6 +8,7 @@ public class Model<T> {
     private List<T> list;
     private List<T> elementList;
     private List<T> foundedList;
+    private List<T> tempList;
 
     private ClassTags tag;
 
@@ -45,5 +46,13 @@ public class Model<T> {
 
     public void setTag(ClassTags tag) {
         this.tag = tag;
+    }
+
+    public List<T> getTempList() {
+        return tempList;
+    }
+
+    public void setTempList(List<T> tempList) {
+        this.tempList = tempList;
     }
 }

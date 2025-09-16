@@ -106,7 +106,6 @@ public class ProductFilling implements Filling<Product> {
     public List<Product> autoFill() throws ReadWriteException {
         Command command= CommandFactory.getCommand(Action.READ);
         command.execute();
-        ReadCommand readCommand=(ReadCommand) command;
-        return readCommand.getList();
+        return Holder.getController().getTempList();
     }
 }
