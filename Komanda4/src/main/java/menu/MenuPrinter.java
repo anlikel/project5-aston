@@ -11,7 +11,7 @@ public class MenuPrinter {
         Util.writeMessage("2-Сортировать коллекцию");
         Util.writeMessage("3-Бинарный поиск по коллекции");
         Util.writeMessage("4-Записать коллекцию в файл");
-        Util.writeMessage("5-Распечать коллекцию на экран");
+        Util.writeMessage("5-Печать");
         Util.writeMessage("6-Поиск количества совпадающих объектов в коллекции");
         Util.writeMessage("7-Создать отдельный элемент для поиска по коллекции");
         String choose = Util.readMessage();
@@ -61,6 +61,22 @@ public class MenuPrinter {
             Util.writeMessage(e.toString());
             MenuPrinter.amountMenu();
             return 0;
+        }
+    }
+
+    public static void displayMenuPrinter()  {
+        String choose = null;
+        try {
+            Util.writeMessage("0-Выход");
+            Util.writeMessage("1-Печать коллекции");
+            Util.writeMessage("2-Печать элемента для поиска из модели");
+            Util.writeMessage("3-Печать списка найденных совпадений");
+            choose = Util.readMessage();
+            MenuHandler.displayMenuHandler(choose);
+        }
+        catch (ReadWriteException e) {
+            Util.writeMessage(e.getMessage().toString());
+            MenuPrinter.displayMenuPrinter();
         }
     }
 }

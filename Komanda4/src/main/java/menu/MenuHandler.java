@@ -15,6 +15,9 @@ import model.Model;
 import utils.Holder;
 import utils.Util;
 
+import java.io.IOException;
+import java.util.List;
+
 public class MenuHandler {
     public static void mainMenuHandler(String choose) throws ReadWriteException {
         switch(choose){
@@ -76,25 +79,22 @@ public class MenuHandler {
 
     public static void fillMenuHandler(String choose) throws ReadWriteException {
         int size=0;
-        ClassTags tag=Holder.getController().getModel().getTag();
+        ClassTags tag=Holder.getController().getTag();
         Filling filling= FillingFactory.getFiller(tag);
-        Model model=Holder.getController().getModel();
+        Controller controller=Holder.getController();
         switch(choose){
             case "1":
                 size=MenuPrinter.amountMenu();
-                model.setList(filling.manualFill(size));
-                Holder.getController().setModel(model);
+                controller.setList(filling.manualFill(size));
                 Util.writeMessage("Коллекция успешно создана");
                 break;
             case "2":
                 size=MenuPrinter.amountMenu();
-                model.setList(filling.randomFill(size));
-                Holder.getController().setModel(model);
+                controller.setList(filling.randomFill(size));
                 Util.writeMessage("Коллекция успешно создана");
                 break;
             case "3":
-                model.setList(filling.autoFill());
-                Holder.getController().setModel(model);
+                controller.setList(filling.autoFill());
                 Util.writeMessage("Коллекция успешно создана");
                 break;
             case "4":
@@ -113,7 +113,9 @@ public class MenuHandler {
                 String number=Util.readMessage();
                 try {
                     amount=Integer.parseInt(number);
-                    //нужна проверка на отрицатедьный ввод элементов коллекции
+                    if(amount<0){
+                        throw new IOException();
+                    }
                 }
                 catch (Exception e){
                     throw new ReadWriteException("некорректно введено количество элементов коллекции");
@@ -124,5 +126,51 @@ public class MenuHandler {
         return amount;
     }
 
+    public static void displayMenuHandler(String choose) throws ReadWriteException {
+        Controller controller= Holder.getController();
+        if(controller.getModel()==null){
+            Util.writeMessage("исключение: модель не инициализирована");
+            return;
+        }
+        switch(choose){
+            case "0":
+                CommandFactory.getCommand(Action.EXIT).execute();
+                break;
+            case "1":
+                Util.writeMessage("************************************************");
+                List list=controller.getList();
+                if(list==null || list.isEmpty())
+                {
+                    Util.writeMessage("исключение: коллекция не создана или пуста");
+                    return;
+                }
+                list.forEach(System.out::println);
+                Util.writeMessage("************************************************");
+                break;
+            case "2":
+                Util.writeMessage("************************************************");
+                List elementList=Holder.getController().getElementList();
+                if(elementList==null || elementList.isEmpty())
+                {
+                    Util.writeMessage("исключение: элемент отсутствует");
+                    return;
+                }
+                elementList.forEach(System.out::println);
+                Util.writeMessage("************************************************");
+                break;
+            case "3":
+                Util.writeMessage("************************************************");
+                List foundedList=controller.getFoundedList();
+                if(foundedList==null || foundedList.isEmpty())
+                {
+                    Util.writeMessage("исключение: нет найденных элементов отсутствует");
+                    return;
+                }
+                foundedList.forEach(System.out::println);
+                Util.writeMessage("************************************************");
+            default:
+                MenuPrinter.displayMenuPrinter();
+        }
+    }
 
 }
