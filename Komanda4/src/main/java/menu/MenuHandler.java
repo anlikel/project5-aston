@@ -126,7 +126,7 @@ public class MenuHandler {
         return amount;
     }
 
-    public static void displayMenuHandler(String choose) throws ReadWriteException {
+    public static void  displayMenuHandler(String choose) throws ReadWriteException {
         Controller controller= Holder.getController();
         if(controller.getModel()==null){
             Util.writeMessage("исключение: модель не инициализирована");
