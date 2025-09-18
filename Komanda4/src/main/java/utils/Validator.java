@@ -19,7 +19,7 @@ public class Validator {
         String[] names = fullName.trim().split(" ");
 
         for (String name : names) {
-            if (!name.matches(regex)) return false;
+            if (!name.matches(regex) || name.length()>40) return false;
         }
 
         return true;

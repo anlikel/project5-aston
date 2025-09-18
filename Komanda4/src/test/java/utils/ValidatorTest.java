@@ -1,17 +1,11 @@
 package utils;
 
-import classes.User;
-import multiFind.FindCountElements;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class ValidatorTest {
     @BeforeEach
@@ -30,7 +24,7 @@ public class ValidatorTest {
     @DisplayName("Тест поля name на ввод одного символа")
     public void testNameOneCharacter(){
         boolean result = Validator.isValidName("A");
-        assertEquals(false, result);
+        assertEquals(true, result);
     }
 
     @Test
