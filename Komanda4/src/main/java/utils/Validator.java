@@ -96,7 +96,7 @@ public class Validator {
 
         try {
             ratingDouble = Double.parseDouble(rating);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException  | NullPointerException es) {
             return false;
         }
 
