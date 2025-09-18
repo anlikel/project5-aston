@@ -17,15 +17,15 @@ public class UserComporatorParity implements Comparator<User> {
                 return 0;
         }
 
-        if (o1.getAge() % 2 != 0 && o2.getAge() % 2 != 0) {
-            return 0;
-        }
+//        if (o1.getAge() % 2 != 0 && o2.getAge() % 2 != 0) {
+//            return 0;
+//        }
+//
+//        if (o1.getAge() % 2 == 0 && o2.getAge() % 2 != 0) {
+//            return -1;
+//        }
 
-        if (o1.getAge() % 2 == 0 && o2.getAge() % 2 != 0) {
-            return -1;
-        }
-
-        return 1;
+        return 0;
     }
 
 

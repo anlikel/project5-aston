@@ -15,13 +15,13 @@ public class FlightComporatorParity implements Comparator<Flight> {
             return o1.getDate().compareTo(o2.getDate());
         }
 
-        if (one % 2 != 0 && two % 2 != 0) {
-            return 0;
-        }
-
-        if (one % 2 == 0 && two % 2 != 0) {
-            return -1;
-        }
-        return 1;
+//        if (one % 2 != 0 && two % 2 != 0) {
+//            return 0;
+//        }
+//
+//        if (one % 2 == 0 && two % 2 != 0) {
+//            return -1;
+//        }
+        return 0;
     }
 }
