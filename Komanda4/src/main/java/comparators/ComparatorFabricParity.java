@@ -9,14 +9,14 @@ import java.util.HashMap;
 public class ComparatorFabricParity {
     private static HashMap<ClassTags, Comparator> map;
 
-    public static Comparator getComparator(ClassTags tag) throws ReadWriteException {
+    public static Comparator getComparator(ClassTags tag){
         if(map==null){
             initMap();
         }
         return map.get(tag);
     }
 
-    private static void initMap() throws ReadWriteException {
+    private static void initMap(){
         map=new HashMap<>();
         map.put(ClassTags.PRODUCT,new ProductComporatorParity());
         map.put(ClassTags.USER,new UserComporatorParity());

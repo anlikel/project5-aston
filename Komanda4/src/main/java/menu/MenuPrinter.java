@@ -83,7 +83,7 @@ public class MenuPrinter {
         }
         catch (ReadWriteException e) {
             Util.writeMessage(e.getMessage().toString());
-            MenuPrinter.displayMenuPrinter();
+            MenuPrinter.mainMenu();
         }
     }
 }

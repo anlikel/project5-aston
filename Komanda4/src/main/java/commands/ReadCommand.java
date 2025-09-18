@@ -9,9 +9,7 @@ import java.util.List;
 
 public class ReadCommand implements Command{
     @Override
-    public void execute() throws ReadWriteException {
+    public void execute(){
         ReadWriteMenuPrinter.mainReadMenu();
-        String choose=Util.readMessage();
-        ReadWriteMenuHandler.mainReadMenuHandler(choose);
     }
 }
