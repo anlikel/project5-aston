@@ -26,7 +26,7 @@ public class Util {
 
     public static String getFileName(){
         String filename = "";
-        ClassTags tag=Holder.getController().getModel().getTag();
+        ClassTags tag=Holder.getController().getTag();
         switch (tag){
             case PRODUCT:
                 filename=Holder.productsFile;
@@ -58,7 +58,7 @@ public class Util {
                 }
             } catch (IOException e) {
                 Util.writeMessage("исключение: неправильный ввод данных повторите");
-                Util.writeMessage("Имя с большой буквы");
+                Util.writeMessage("Имя с большой буквы и не больше 50 символов");
             }
         }
     }
