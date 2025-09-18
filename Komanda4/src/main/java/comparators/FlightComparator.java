@@ -34,6 +34,10 @@ public class FlightComparator implements Comparator<Flight>,Filter {
         }
     }
 
+    public void setSortField(String sortField) {
+        this.sortField = sortField;
+    }
+
     @Override
     public void setFilter() throws ReadWriteException {
         try{

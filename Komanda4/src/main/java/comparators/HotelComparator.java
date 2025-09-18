@@ -30,6 +30,10 @@ public class HotelComparator implements Comparator<Hotel>, Filter {
         }
     }
 
+    public void setSortField(String sortField) {
+        this.sortField = sortField;
+    }
+
     @Override
     public void setFilter() throws ReadWriteException {
         try {
