@@ -31,6 +31,10 @@ public class ProductComparator implements Comparator<Product>,Filter {
         }
     }
 
+    public void setSortField(String sortField) {
+        this.sortField = sortField;
+    }
+
     @Override
     public void setFilter() throws ReadWriteException {
         try{
