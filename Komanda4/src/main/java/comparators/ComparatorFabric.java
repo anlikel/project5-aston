@@ -8,14 +8,14 @@ import java.util.HashMap;
 public class ComparatorFabric {
     private static HashMap<ClassTags,Comparator>map;
 
-    public static Comparator getComparator(ClassTags tag) throws ReadWriteException {
+    public static Comparator getComparator(ClassTags tag) {
         if(map==null){
             initMap();
         }
         return map.get(tag);
     }
 
-    private static void initMap() throws ReadWriteException {
+    private static void initMap() {
         map=new HashMap<>();
         map.put(ClassTags.PRODUCT,new ProductComparator());
         map.put(ClassTags.USER,new UserComparator());

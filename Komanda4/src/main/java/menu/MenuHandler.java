@@ -86,16 +86,16 @@ public class MenuHandler {
             case "1":
                 size=MenuPrinter.amountMenu();
                 controller.setList(filling.manualFill(size));
-                Util.writeMessage("Коллекция успешно создана");
+//                Util.writeMessage("Коллекция успешно создана");
                 break;
             case "2":
                 size=MenuPrinter.amountMenu();
                 controller.setList(filling.randomFill(size));
-                Util.writeMessage("Коллекция успешно создана");
+//                Util.writeMessage("Коллекция успешно создана");
                 break;
             case "3":
                 controller.setList(filling.autoFill());
-                Util.writeMessage("Коллекция успешно создана");
+//                Util.writeMessage("Коллекция успешно создана");
                 break;
             case "4":
                 CommandFactory.getCommand(Action.EXIT).execute();
@@ -168,8 +168,9 @@ public class MenuHandler {
                 }
                 foundedList.forEach(System.out::println);
                 Util.writeMessage("************************************************");
+                break;
             default:
-                MenuPrinter.displayMenuPrinter();
+                throw new ReadWriteException("некорректный выбор пункта меню");
         }
     }
 

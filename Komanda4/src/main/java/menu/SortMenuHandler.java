@@ -3,6 +3,7 @@ package menu;
 import classfillers.FillingFactory;
 import commands.CommandFactory;
 import comparators.ComparatorFabric;
+import comparators.ComparatorFabricParity;
 import comparators.Filter;
 import controller.Controller;
 import enums.Action;
@@ -22,23 +23,30 @@ public class SortMenuHandler {
         Controller controller= Holder.getController();
         List list=controller.getList();
         switch(choose){
+            case "0":
+                CommandFactory.getCommand(Action.EXIT).execute();
+                break;
             case "1":
                 list.sort(null);
                 controller.setList(list);
                 break;
             case "2":
-                ClassTags tag=controller.getTag();
-                Comparator comp= ComparatorFabric.getComparator(tag);
-                Filter f=(Filter)comp;
-                f.setFilter();
-                list.sort((Comparator)f);
+                ClassTags tag1=controller.getTag();
+                Comparator comp1= ComparatorFabric.getComparator(tag1);
+                Filter f1=(Filter)comp1;
+                f1.setFilter();
+                list.sort((Comparator)f1);
                 controller.setList(list);
                 break;
             case "3":
-                CommandFactory.getCommand(Action.EXIT).execute();
+                ClassTags tag2=controller.getTag();
+                Comparator comp2= ComparatorFabricParity.getComparator(tag2);
+                list.sort(comp2);
+                controller.setList(list);
                 break;
+
             default:
-                throw new ReadWriteException("исключение: некоректный выбор пункта меню");
+                throw new ReadWriteException("исключение: некорректный выбор пункта меню");
         }
     }
 
@@ -52,6 +60,9 @@ public class SortMenuHandler {
         ClassTags tag=controller.getTag();
         int index=-1;
         switch(choose){
+            case "0":
+                CommandFactory.getCommand(Action.EXIT).execute();
+                break;
             case "1":
                 list.sort(null);
                 Util.writeMessage("********************************************");
@@ -87,9 +98,6 @@ public class SortMenuHandler {
                     Util.writeMessage("элемент не найден");
                 }
                 MenuPrinter.mainMenu();
-                break;
-            case "3":
-                CommandFactory.getCommand(Action.EXIT).execute();
                 break;
             default:
                 throw new ReadWriteException("исключение: некоректный выбор пункта меню");

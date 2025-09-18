@@ -6,9 +6,18 @@ import utils.Util;
 
 public class ReadWriteMenuPrinter {
     public static void mainReadMenu() {
-        Util.writeMessage("0-Выход");
-        Util.writeMessage("1-Чтение из файла по умолчанию");
-        Util.writeMessage("2-Чтение из определенного файла");
+        String choose;
+        try {
+            Util.writeMessage("0-Выход");
+            Util.writeMessage("1-Чтение из файла по умолчанию");
+            Util.writeMessage("2-Чтение из определенного файла");
+            choose = Util.readMessage();
+            ReadWriteMenuHandler.mainReadMenuHandler(choose);
+        }
+        catch(ReadWriteException e){
+            Util.writeMessage(e.getMessage().toString());
+            MenuPrinter.mainMenu();
+        }
     }
 
     public static void mainWriteMenu() {
