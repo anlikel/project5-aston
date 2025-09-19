@@ -14,8 +14,8 @@ public class SortMenuPrinter {
         choose = Util.readMessage();
         SortMenuHandler.mainSortMenuHandler(choose);
         } catch (ReadWriteException e) {
-            Util.writeMessage(e.toString());
-            SortMenuPrinter.mainSortMenu();
+            Util.writeMessage(e.getMessage().toString());
+            MenuPrinter.mainMenu();
         }
     }
 
@@ -30,8 +30,8 @@ public class SortMenuPrinter {
             choose = Util.readMessage();
             SortMenuHandler.binarySearchMenuHandler(choose);
         } catch (ReadWriteException e) {
-            Util.writeMessage(e.toString());
-            SortMenuPrinter.mainSortMenu();
+            Util.writeMessage(e.getMessage().toString());
+            MenuPrinter.mainMenu();
         }
     }
 }

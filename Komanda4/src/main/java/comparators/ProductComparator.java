@@ -4,6 +4,7 @@ package comparators;
 import classes.Product;
 import exceptions.ReadWriteException;
 import utils.Util;
+import utils.Validator;
 
 
 import java.util.Comparator;
@@ -41,8 +42,10 @@ public class ProductComparator implements Comparator<Product>,Filter {
             Util.writeMessage("введите поле для сортировки");
             Util.writeMessage("title price quantity");
             sortField=Util.readMessage();
+            Validator.checkSortFieldForProduct(sortField);
         }
         catch (ReadWriteException e){
+            Util.writeMessage(e.getMessage().toString());
             throw new ReadWriteException("некорректный ввод");
         }
     }

@@ -108,5 +108,29 @@ public class Validator {
             throw new ReadWriteException("исключение: объект для записи не существует");
         }
     }
+
+    public static void checkSortFieldForFLight(String str) throws ReadWriteException {
+        if(!(str.equals("name") || str.equals("date") || str.equals("price"))){
+            throw new ReadWriteException("исключение: некорректное поле для сортировки");
+        }
+    }
+
+    public static void checkSortFieldForHotel(String str) throws ReadWriteException {
+        if(!(str.equals("name") || str.equals("city") || str.equals("rating"))){
+            throw new ReadWriteException("исключение: некорректное поле для сортировки");
+        }
+    }
+
+    public static void checkSortFieldForUser(String str) throws ReadWriteException {
+        if(!(str.equals("name") || str.equals("age") || str.equals("email"))){
+            throw new ReadWriteException("исключение: некорректное поле для сортировки");
+        }
+    }
+
+    public static void checkSortFieldForProduct(String str) throws ReadWriteException {
+        if(!(str.equals("title") || str.equals("price") || str.equals("quantity"))){
+            throw new ReadWriteException("исключение: некорректное поле для сортировки");
+        }
+    }
 }
 
