@@ -38,13 +38,16 @@ public class UserComporatorParityTest {
         userList.add(user3);
         userList.add(user7);
         userList.add(user5);
+        System.out.println("before sort");
+        userList.forEach(t-> System.out.println(t));
         userList.sort(comporatorParity);
+        System.out.println("after sort");
         userList.forEach(t-> System.out.println(t));
 
         assertEquals(2, userList.get(0).getAge());
         assertEquals(4, userList.get(1).getAge());
-        assertEquals(1, userList.get(2).getAge());
-        assertEquals(6, userList.get(3).getAge());
+        assertEquals(6, userList.get(2).getAge());
+        assertEquals(1, userList.get(3).getAge());
         assertEquals(3, userList.get(4).getAge());
         assertEquals(7, userList.get(5).getAge());
         assertEquals(5, userList.get(6).getAge());

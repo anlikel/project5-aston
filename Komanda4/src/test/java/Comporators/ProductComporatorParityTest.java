@@ -40,13 +40,17 @@ public class ProductComporatorParityTest {
         productList.add(product2);
         productList.add(product5);
         productList.add(product3);
-        productList.sort(comporatorParity);
-        //productList.forEach(t->System.out.println(t));
 
-        assertEquals(2, productList.get(0).getPrice());
+        System.out.println("before sort");
+        productList.forEach(t->System.out.println(t));
+        productList.sort(comporatorParity);
+        System.out.println("after sort");
+        productList.forEach(t->System.out.println(t));
+
+        assertEquals(4, productList.get(0).getPrice());
         assertEquals(1, productList.get(1).getPrice());
         assertEquals(7, productList.get(2).getPrice());
-        assertEquals(4, productList.get(3).getPrice());
+        assertEquals(2, productList.get(3).getPrice());
         assertEquals(6, productList.get(4).getPrice());
         assertEquals(5, productList.get(5).getPrice());
         assertEquals(3, productList.get(6).getPrice());

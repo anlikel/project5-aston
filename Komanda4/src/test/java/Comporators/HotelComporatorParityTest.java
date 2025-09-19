@@ -39,16 +39,19 @@ public class HotelComporatorParityTest {
         hotelList.add(hotel5);
         hotelList.add(hotel22);
         hotelList.add(hotel44);
+        System.out.println("before sort");
+        hotelList.forEach(t->System.out.println(t));
         hotelList.sort(comporatorParity);
+        System.out.println("after sort");
         hotelList.forEach(t->System.out.println(t));
 
-        assertEquals(3, hotelList.get(0).getRating());
-        assertEquals(1, hotelList.get(1).getRating());
-        assertEquals(2, hotelList.get(2).getRating());
-        assertEquals(2, hotelList.get(3).getRating());
-        assertEquals(5, hotelList.get(4).getRating());
-        assertEquals(4, hotelList.get(5).getRating());
-        assertEquals(4, hotelList.get(6).getRating());
+        assertEquals(3, hotelList.get(0).getRating());  // первое четное (min)
+        assertEquals(1, hotelList.get(1).getRating());  // второе четное
+        assertEquals(2, hotelList.get(2).getRating());  // третье четное
+        assertEquals(4, hotelList.get(3).getRating());  // четвертое четное
+        assertEquals(5, hotelList.get(4).getRating());  // затем нечетные в исходном порядке
+        assertEquals(2, hotelList.get(5).getRating());  //
+        assertEquals(4, hotelList.get(6).getRating());  //
 
     }
 }

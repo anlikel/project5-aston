@@ -43,7 +43,12 @@ public class FlightComporatorParityTest {
         flightList.add(flight2);
         flightList.add(flight4);
         flightList.add(flight3);
+        System.out.println("before sort");
+        flightList.forEach(t->System.out.println(t));
         flightList.sort(comporatorParity);
+        System.out.println("after sort");
+        flightList.forEach(t->System.out.println(t));
+
         assertEquals(12, flightList.get(0).getDate().getDayOfMonth());
         assertEquals(13, flightList.get(1).getDate().getDayOfMonth());
         assertEquals(15, flightList.get(2).getDate().getDayOfMonth());
