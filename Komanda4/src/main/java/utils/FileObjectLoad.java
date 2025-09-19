@@ -123,4 +123,13 @@ public final class FileObjectLoad {
         }
         return list;
     }
+
+    public static void checkFileForSave(String file) throws ReadWriteException {
+        if (!Files.exists(Path.of(file))) {
+            throw new ReadWriteException("Исключение: файл не существует - " + file);
+        }
+        if (!Files.isWritable(Path.of(file))) {
+            throw new ReadWriteException("Исключение: в файл нельзя записать - " + file);
+        }
+    }
 }

@@ -53,8 +53,7 @@ public class ReadWriteMenuHandler {
                 ReadWriteMenuHandler.mainWriteTargetMenuHandlerAppend(choose2,list);
                 break;
             default:
-                Util.writeMessage("некорректный выбор пункта меню");
-                ReadWriteMenuPrinter.mainReadMenu();
+                throw new ReadWriteException("некорректный выбор пункта меню");
         }
     }
 
@@ -65,17 +64,17 @@ public class ReadWriteMenuHandler {
                 break;
             case "1":
                 String file1= Holder.listFile;
+                FileObjectLoad.checkFileForSave(file1);
                 FileObjectSave.saveListToFile(file1,list);
                 break;
             case "2":
                 Util.writeMessage("введите имя файла для чтения");
                 String file2= Util.readMessage();
-                //проверить файл корректность
+                FileObjectLoad.checkFileForSave(file2);
                 FileObjectSave.saveListToFile(file2,list);
                 break;
             default:
-                Util.writeMessage("некорректный выбор пункта меню");
-                ReadWriteMenuPrinter.mainReadMenu();
+                throw new ReadWriteException("некорректный выбор пункта меню");
         }
     }
 
@@ -86,17 +85,17 @@ public class ReadWriteMenuHandler {
                 break;
             case "1":
                 String file1= Holder.listFile;
+                FileObjectLoad.checkFileForSave(file1);
                 FileObjectSave.saveListToFileWithAppend(file1,list);
                 break;
             case "2":
                 Util.writeMessage("введите имя файла для чтения");
                 String file2= Util.readMessage();
-                //проверить файл корректность
+                FileObjectLoad.checkFileForSave(file2);
                 FileObjectSave.saveListToFileWithAppend(file2,list);
                 break;
             default:
-                Util.writeMessage("некорректный выбор пункта меню");
-                ReadWriteMenuPrinter.mainReadMenu();
+                throw new ReadWriteException("некорректный выбор пункта меню");
         }
     }
 
@@ -130,8 +129,7 @@ public class ReadWriteMenuHandler {
                 mainWriteMenuHandler(choose2,list);
                 break;
             default:
-                Util.writeMessage("некорректный выбор пункта меню");
-                ReadWriteMenuPrinter.objectWriteMenu();
+                throw new ReadWriteException("некорректный выбор пункта меню");
         }
     }
 }

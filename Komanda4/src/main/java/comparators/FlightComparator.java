@@ -5,6 +5,7 @@ import classes.Flight;
 import classes.Product;
 import exceptions.ReadWriteException;
 import utils.Util;
+import utils.Validator;
 
 
 import java.time.temporal.ChronoUnit;
@@ -44,8 +45,10 @@ public class FlightComparator implements Comparator<Flight>,Filter {
             Util.writeMessage("введите поле для сортировки");
             Util.writeMessage("name date price");
             sortField=Util.readMessage();
+            Validator.checkSortFieldForFLight(sortField);
         }
         catch (ReadWriteException e){
+            Util.writeMessage(e.getMessage().toString());
             throw new ReadWriteException("некорректный ввод");
         }
     }

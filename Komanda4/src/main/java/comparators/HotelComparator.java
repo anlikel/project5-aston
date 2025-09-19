@@ -3,6 +3,8 @@ package comparators;
 import classes.Hotel;
 import exceptions.ReadWriteException;
 import utils.Util;
+import utils.Validator;
+
 import java.util.Comparator;
 
 public class HotelComparator implements Comparator<Hotel>, Filter {
@@ -40,7 +42,9 @@ public class HotelComparator implements Comparator<Hotel>, Filter {
             Util.writeMessage("введите поле для сортировки");
             Util.writeMessage("name city rating");
             sortField = Util.readMessage();
+            Validator.checkSortFieldForHotel(sortField);
         } catch (ReadWriteException e) {
+            Util.writeMessage(e.getMessage().toString());
             throw new ReadWriteException("некорректный ввод");
         }
     }

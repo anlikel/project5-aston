@@ -32,7 +32,7 @@ public class ReadWriteMenuPrinter {
         Util.writeMessage("2-Запись в определенный файл");
     }
 
-    public static void objectWriteMenu() {
+    public static void objectWriteMenu()  {
         String choose = null;
         try {
             Util.writeMessage("0-Выход");

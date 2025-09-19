@@ -52,7 +52,16 @@ public class SortMenuHandler {
 
     public static void binarySearchMenuHandler(String choose) throws ReadWriteException {
         Controller controller= Holder.getController();
+        if(controller.getModel()==null){
+            throw new ReadWriteException("исключение: модель не иницализирована");
+        }
         List list=controller.getList();
+        if(list==null){
+            throw new ReadWriteException("исключение: список не создан");
+        }
+        if(list.isEmpty()){
+            throw new ReadWriteException("исключение: список пуст");
+        }
         Util.writeMessage("********************************************");
         Util.writeMessage("*******несортированный список объектов******");
         list.forEach(System.out::println);
@@ -78,8 +87,7 @@ public class SortMenuHandler {
                 else {
                     Util.writeMessage("элемент не найден");
                 }
-                MenuPrinter.mainMenu();
-                break;
+                throw new ReadWriteException("возврат в меню");
             case "2":
                 Comparator comp= ComparatorFabric.getComparator(tag);
                 Filter f=(Filter)comp;
@@ -97,8 +105,7 @@ public class SortMenuHandler {
                 else {
                     Util.writeMessage("элемент не найден");
                 }
-                MenuPrinter.mainMenu();
-                break;
+                throw new ReadWriteException("возврат в меню");
             default:
                 throw new ReadWriteException("исключение: некоректный выбор пункта меню");
         }

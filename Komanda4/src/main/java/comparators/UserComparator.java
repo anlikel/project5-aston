@@ -4,6 +4,7 @@ package comparators;
 import classes.User;
 import exceptions.ReadWriteException;
 import utils.Util;
+import utils.Validator;
 
 
 import java.util.Comparator;
@@ -36,8 +37,10 @@ public class UserComparator implements Comparator<User>,Filter {
             Util.writeMessage("введите поле для сортировки");
             Util.writeMessage("name age email");
             sortField=Util.readMessage();
+            Validator.checkSortFieldForUser(sortField);
         }
         catch (ReadWriteException e){
+            Util.writeMessage(e.getMessage().toString());
             throw new ReadWriteException("некорректный ввод");
         }
     }
