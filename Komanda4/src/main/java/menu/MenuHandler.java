@@ -6,6 +6,7 @@ import classes.Product;
 import classes.User;
 import classfillers.Filling;
 import classfillers.FillingFactory;
+import classfillers.UniversalFiller;
 import commands.CommandFactory;
 import controller.Controller;
 import enums.Action;
@@ -82,19 +83,20 @@ public class MenuHandler {
         ClassTags tag=Holder.getController().getTag();
         Filling filling= FillingFactory.getFiller(tag);
         Controller controller=Holder.getController();
+        UniversalFiller universalFiller=new UniversalFiller(filling);
         switch(choose){
             case "1":
                 size=MenuPrinter.amountMenu();
-                controller.setList(filling.manualFill(size));
+                controller.setList(universalFiller.manualFill(size));
 //                Util.writeMessage("Коллекция успешно создана");
                 break;
             case "2":
                 size=MenuPrinter.amountMenu();
-                controller.setList(filling.randomFill(size));
+                controller.setList(universalFiller.randomFill(size));
 //                Util.writeMessage("Коллекция успешно создана");
                 break;
             case "3":
-                controller.setList(filling.autoFill());
+                controller.setList(universalFiller.autoFill());
 //                Util.writeMessage("Коллекция успешно создана");
                 break;
             case "4":
